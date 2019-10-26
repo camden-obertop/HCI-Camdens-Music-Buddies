@@ -19,7 +19,7 @@
           size="65"
         >{{soundOn==true?'mdi-volume-high':'mdi-volume-mute'}}</v-icon>
       </div>
-      <v-slider :max="songLengthSecondsTimeTen" :value="tenthSecondPlaying"></v-slider>
+      <v-slider :max="songLengthSecondsTimeTen" :value="tenthSecondPlaying" @change="slidTime()"></v-slider>
     </div>
   </div>
 </template>
@@ -53,6 +53,9 @@ export default {
           this.songUrl = this.songInfo.songUrl;
           this.playAndPause();
 
+      },
+      slidTime(){
+        this.audio.currentTime = this.tenthSecondPlaying*10; 
       },
     playAndPause() {
       this.playing = !this.playing;
