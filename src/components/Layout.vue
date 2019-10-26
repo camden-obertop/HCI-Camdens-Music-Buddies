@@ -5,20 +5,20 @@
     <v-content class="gridContent">
       <router-view></router-view>
     </v-content>
-    <div class="gridPlayer" style="border-style: solid;">
-      Player
-    </div>
+    <player class="gridPlayer" style="border-style: solid;"/>
   </div>
 </template>
 
 <script>
   import NavigationBar from './NavigationBar';
   import QueueDrawer from './QueueDrawer';
+  import Player from './Player';
 export default {
   name: "layout",
   components: {
     'navigation-bar': NavigationBar,
-    'queue-drawer': QueueDrawer
+    'queue-drawer': QueueDrawer,
+    'player': Player
   },
   data: function () {
     return {
