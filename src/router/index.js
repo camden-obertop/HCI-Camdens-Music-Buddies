@@ -31,7 +31,7 @@ const routes = [
       },
       {
         path: "/songs",
-        name: "Favorite Songs",
+        name: "Songs",
         component: FavoriteSongsBrowser
       },
       {

@@ -1,7 +1,7 @@
 <template>
 	<v-app-bar app>
     <v-app-bar-nav-icon />
-    <v-tabs v-model="activeTab">
+    <v-tabs :value="activeTab">
       <v-tab 
         v-for="header in headers" 
         :key="header" 
@@ -20,7 +20,7 @@ export default {
   name: "navigationBar",
   data: function () {
     return {
-    	headers: ['Home', 'Albums', 'Playlists', 'Favorite Songs', 'Friends']
+    	headers: ['Home', 'Albums', 'Playlists', 'Songs', 'Friends']
     }
   },
   methods: {
