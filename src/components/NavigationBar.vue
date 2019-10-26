@@ -6,6 +6,13 @@
         	{{ header }}
         </v-tab>
       </v-tabs>
+       <v-text-field
+        flat
+        solo-inverted
+        hide-details
+        label="Search"
+        class="hidden-sm-and-down"
+      ></v-text-field>
     </v-app-bar>
 </template>
 
