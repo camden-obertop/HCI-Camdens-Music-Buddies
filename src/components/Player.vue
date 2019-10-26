@@ -5,6 +5,18 @@
           <h2> artist</h2>
       </div>
       <div class="playing-info--column">
+          <div class ="icons--row">
+              <v-btn :class="{ 'show-btns': hover }" :color="transparent" icon>
+                <v-icon
+                  :class="{ 'show-btns': hover }"
+                  :color="transparent"
+                  @click="play()"
+                  size="65"
+                >
+                  mdi-play
+                </v-icon>
+              </v-btn>
+              </div>
     </div>
   </div>
 </template>
@@ -16,8 +28,23 @@ export default {
   data: function () {
     return {
       songName: 'Chillis'
-      
+
     }
+  },
+  methods: {
+      play() {
+
+      },
+      pause(){
+
+      },
+      next(){
+
+      },
+      last(){
+
+      },
+
   }
 };
 </script>
