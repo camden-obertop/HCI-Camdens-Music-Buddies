@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import Song from '../entities/song';
 import Playlist from '../entities/playlist';
+import router from '../router';
 
 Vue.use(Vuex);
 
@@ -41,6 +42,11 @@ const actions = {
 	playSong: (state, song) => {
 		// TODO Add song playing here.
 		song
+	},
+	navigateToPage: (state, pageName) => {
+		if (router.history.current.name !== pageName) {
+			router.push({ name: pageName });
+		}
 	}
 }
 

@@ -22,14 +22,9 @@ export default {
   props: {
     drawerOpen: Boolean
   },
-  data: function () {
-    return {
-    	headers: ['Home', 'Albums', 'Playlists', 'Songs', 'Friends']
-    }
-  },
   methods: {
     playQueueSong(song) {
-      this.$state.actions.playSong(song);
+      this.$store.dispatch('playSong', song);
       // eslint-disable-next-line no-console
       console.log(`Attempting to play the song ${song.title}.`);
     }
