@@ -6,16 +6,13 @@
       </div>
       <div class="playing-info--column">
           <div class ="icons--row">
-              <v-btn :class="{ 'show-btns': hover }" :color="transparent" icon>
                 <v-icon
                   :class="{ 'show-btns': hover }"
                   :color="transparent"
-                  @click="play()"
-                  size="65"
-                >
-                  mdi-play
+                  @click="playAndPause()"
+                  size="65">
+                  {{playing==true?'mdi-pause':'mdi-play'}}
                 </v-icon>
-              </v-btn>
               </div>
     </div>
   </div>
@@ -27,16 +24,13 @@ export default {
   name: "player",
   data: function () {
     return {
-      songName: 'Chillis'
-
+      songName: 'Chillis',
+      playing: true
     }
   },
   methods: {
-      play() {
-
-      },
-      pause(){
-
+      playAndPause() {
+          this.playing = !this.playing;
       },
       next(){
 
@@ -44,7 +38,6 @@ export default {
       last(){
 
       },
-
   }
 };
 </script>
@@ -63,5 +56,13 @@ export default {
     }
     .song-info--column h1, h2{
             text-align: left;
+    }
+    .playing-info--column{
+        display:flex;
+        width: 100%;
+    }
+    .icons--row{
+        display:flex;
+        justify-content: left;
     }
 </style>
