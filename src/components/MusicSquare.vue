@@ -89,20 +89,7 @@
   </v-hover>
 </template>
 
-<style scoped>
-.v-img {
-  transition: opacity 0.2s ease-in-out;
-  opacity: 0.9;
-}
-
-.v-img:not(.on-hover) {
-  opacity: 1;
-}
-
-.show-btns {
-  color: rgba(255, 255, 255, 1) !important;
-}
-</style>
+<style scoped src="./layout.css"/>
 
 <script>
 export default {

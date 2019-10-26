@@ -27,29 +27,4 @@ export default {
   }
 };
 </script>
-<style scoped>
-  /* https://www.w3schools.com/css/css_grid.asp */
-  .layoutGrid {
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-areas:
-      "navigation navigation navigation"
-      "queue content content "
-      "player player player";
-    grid-template-columns: max-content auto minmax(max-content, 64px);
-    grid-template-rows: max-content auto minmax(max-content, 64px);
-  }
-  .gridNavigation {
-    grid-area: navigation;
-  }
-  .gridQueue {
-    grid-area: queue;
-  }
-  .gridContent {
-    grid-area: content;
-  }
-  .gridPlayer {
-    grid-area: player
-  }
-</style>
+<style scoped src="./layout.css"/>
