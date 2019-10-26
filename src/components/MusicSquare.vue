@@ -62,7 +62,7 @@
                   <v-list-item
                     v-for="(item, index) in playlists"
                     :key="index"
-                    @click="onAddPlaylist(index)"
+                    @click="onAddPlaylist(item)"
                     ><v-list-item-title>{{
                       item.title
                     }}</v-list-item-title></v-list-item
@@ -122,26 +122,23 @@ export default {
     }
   },
   methods: {
-      onAddFavorite() {
-          this.starSelected = !this.starSelected;
-          if (this.starSelected === true) {
-            console.log("Favorited!");
-          } else {
-            console.log("Unfavorited.")
-          }
-      },
-      onPlay() {
-          console.log("Played");
-      },
-      onAddPlaylist(index) {
-          this.selectedPlaylist = index + 1;
-          console.log(`Added to playlist ${this.selectedPlaylist}`);
+    onAddFavorite() {
+      this.starSelected = !this.starSelected;
+      if (this.starSelected === true) {
+        console.log("Favorited!");
+      } else {
+        console.log("Unfavorited.");
       }
+    },
+    onPlay() {
+      console.log("Played");
+    },
+    onAddPlaylist(playlist) {
+      console.log(`Added to playlist ${playlist.title}`);
+    }
   },
   data: () => ({
-    link: "../assets/chills-album-cover.jpeg",
     starSelected: false,
-    selectedPlaylist: 0,
     transparent: "rgba(255, 255, 255, 0)",
     playlists: [
       { title: "Playlist 1" },
