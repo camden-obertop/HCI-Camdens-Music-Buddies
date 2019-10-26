@@ -1,8 +1,8 @@
 <template>
   <div class="player--row">
     <div class="song-info--column">
-      <h1>Song Title</h1>
-      <h2>artist</h2>
+      <h1>{{songName}}</h1>
+      <h2>{{songArtist}}</h2>
     </div>
     <div class="playing-info--column">
       <div class="icons--row">
@@ -27,19 +27,37 @@
 <script>
 export default {
   name: "player",
+  props: {
+    songInfo: {
+      type: Object
+    }
+  },
   data: function() {
     return {
       songName: "Chillis",
+      songArtist: "peppers",
       playing: false,
       soundOn: true,
       songLengthSecondsTimeTen: 3760,
-      tenthSecondPlaying: 0
+      tenthSecondPlaying: 0,
+      songUrl:"http://k007.kiwi6.com/hotlink/3s5pi9as7v/A_Bit_Of_Armless_Fun.mp3",
+      audio: null,
     };
   },
   methods: {
+      recieveSong(){
+          this.tenthSecondPlaying = 0;
+          this.songName = this.songInfo.songName;
+          this.songArtist = this.songInfo.songArtist;
+          this.playing=false;
+          this.songUrl = this.songInfo.songUrl;
+          this.playAndPause();
+
+      },
     playAndPause() {
       this.playing = !this.playing;
       if (this.playing) {
+        this.playSong();
         this.playingFunc = setInterval(() => {
           if (this.tenthSecondPlaying < this.songLengthSecondsTimeTen) {
             this.tenthSecondPlaying += 1;
@@ -48,12 +66,23 @@ export default {
           }
         }, 100);
       }
-      if (!this.playing) {
+            if (!this.playing) {
         clearInterval(this.playingFunc);
+        this.stopSong();
       }
     },
+    playSong(){
+        this.audio = new Audio(this.songUrl);
+        this.audio.play();
+
+    },
+    stopSong(){
+        this.audio.pause();
+    },
+
     muteAndUnmute() {
       this.soundOn = !this.soundOn;
+      this.audio.muted = !this.soundOn;
     },
 
     next() {},
