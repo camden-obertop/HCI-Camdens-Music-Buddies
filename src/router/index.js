@@ -1,7 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Layout from "../components/Layout.vue";
-import Home from "../pages/Home.vue";
+import Layout from "../components/Layout";
+import Home from "../pages/Home";
+import AlbumsBrowser from "../pages/AlbumsBrowser";
+import PlayistsBrowser from "../pages/PlaylistsBrowser";
+import FavoriteSongsBrowser from "../pages/FavoriteSongsBrowser";
+import FriendsBrowser from "../pages/FriendsBrowser";
 
 Vue.use(VueRouter);
 
@@ -12,8 +16,28 @@ const routes = [
     children: [
       {
         path: "/",
-        name: "home",
+        name: "Home",
         component: Home
+      },
+      {
+        path: "/albums",
+        name: "Albums",
+        component: AlbumsBrowser
+      },
+      {
+        path: "/playlists",
+        name: "Playlists",
+        component: PlayistsBrowser
+      },
+      {
+        path: "/songs",
+        name: "Favorite Songs",
+        component: FavoriteSongsBrowser
+      },
+      {
+        path: "/friends",
+        name: "Friends",
+        component: FriendsBrowser
       }
     ]
   }
