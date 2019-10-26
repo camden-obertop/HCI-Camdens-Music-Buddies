@@ -132,6 +132,13 @@ export default {
     },
     onPlay() {
       console.log("Played");
+      var audio = new Audio('http://k007.kiwi6.com/hotlink/3s5pi9as7v/A_Bit_Of_Armless_Fun.mp3'); // path to file
+      var date = Date();
+      var startTime = d.getTime();
+      console.log(startTime);
+    },
+    onPause(){
+
     },
     onAddPlaylist(playlist) {
       console.log(`Added to playlist ${playlist.title}`);
