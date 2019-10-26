@@ -46,7 +46,13 @@ export default {
           this.playing = !this.playing;
           if(this.playing){
               this.playingFunc = setInterval(() => {
-			this.tenthSecondPlaying+=1; 
+                              if(this.tenthSecondPlaying< this.songLengthSecondsTimeTen){
+
+            this.tenthSecondPlaying+=1; 
+                              }
+                              else{
+                                  this.playAndPause();
+                              }
 		}, 100);
           }
           if(!this.playing){
