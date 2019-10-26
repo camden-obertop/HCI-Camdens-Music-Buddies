@@ -37,9 +37,16 @@ const mutations = {
 	}
 }
 
+const actions = {
+	playSong: (state, song) => {
+		// TODO Add song playing here.
+		song
+	}
+}
+
 export default new Vuex.Store({
   state,
   mutations,
-  actions: {},
+  actions,
   modules: {}
 });
