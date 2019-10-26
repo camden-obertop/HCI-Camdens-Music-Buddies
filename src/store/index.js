@@ -42,6 +42,8 @@ const actions = {
 	playSong: (state, song) => {
 		// TODO Add song playing here.
 		song
+		// eslint-disable-next-line no-console
+		console.log(`Attempting to play the song ${song.title}.`);
 	},
 	navigateToPage: (state, pageName) => {
 		if (router.history.current.name !== pageName) {

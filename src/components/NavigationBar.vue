@@ -1,6 +1,6 @@
 <template>
 	<v-app-bar app>
-    <v-app-bar-nav-icon></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon />
     <v-tabs v-model="activeTab">
       <v-tab 
         v-for="header in headers" 

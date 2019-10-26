@@ -1,8 +1,8 @@
 export default class Album {
-	constructor(title, artist, streamingSource, artURL='') {
+	constructor(title, artist, platform, artURL='') {
 		this.title = title;
 		this.artist = artist;
-		this.streamingSource = streamingSource;
+		this.platform = platform;
 		this.artURL = artURL;
 	}
 }
