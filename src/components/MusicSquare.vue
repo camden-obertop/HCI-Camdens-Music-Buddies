@@ -1,7 +1,7 @@
 <template>
   <v-hover v-slot:default="{ hover }">
     <v-card
-      height="300px"
+      height="275px"
       width="200px"
       :class="{ 'on-hover': hover }"
       elevation="0"
@@ -16,6 +16,7 @@
           <v-row justify="space-between">
             <v-col>
               <v-btn
+                v-if="!isPlaylist"
                 :class="{ 'show-btns': hover }"
                 :color="hover && starSelected ? 'yellow' : transparent"
                 @click="onAddFavorite()"
@@ -45,6 +46,7 @@
               <v-menu offset-x>
                 <template v-slot:activator="{ on }">
                   <v-btn
+                    v-if="!isPlaylist"
                     :class="{ 'show-btns': hover }"
                     :color="transparent"
                     v-on="on"
@@ -76,7 +78,7 @@
       <v-card-text class="ma-0 pa-0 text-center title">{{
         musicInfo.title
       }}</v-card-text>
-      <v-card-text class="ml-5 pa-0 text-center subtitle-2"
+      <v-card-text v-if="!isPlaylist" class="ml-5 pa-0 text-center subtitle-2"
         >{{ musicInfo.artist }}
         <v-img
           style="display:inline-block; float:right; margin-right:25px"
@@ -92,7 +94,7 @@
 <style scoped>
 .v-img {
   transition: opacity 0.2s ease-in-out;
-  opacity: 0.9;
+  opacity: 0.5;
 }
 
 .v-img:not(.on-hover) {
@@ -109,6 +111,9 @@ export default {
   props: {
     musicInfo: {
       type: Object
+    },
+    isPlaylist: {
+      type: Boolean
     }
   },
   computed: {
