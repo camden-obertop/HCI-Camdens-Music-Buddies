@@ -76,6 +76,8 @@ export default {
         this.audio = new Audio(this.songUrl);
         this.audio.currentTime = this.tenthSecondPlaying / 10;
         this.audio.play();
+        // Why add an unnescary if
+        this.audio.muted =!this.soundOn;
 
     },
     stopSong(){
