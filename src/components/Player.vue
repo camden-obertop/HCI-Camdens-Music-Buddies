@@ -72,7 +72,9 @@ export default {
       }
     },
     playSong(){
+        // Need to specify time in song
         this.audio = new Audio(this.songUrl);
+        this.audio.currentTime = this.tenthSecondPlaying / 10;
         this.audio.play();
 
     },
