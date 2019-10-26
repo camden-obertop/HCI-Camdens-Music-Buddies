@@ -1,7 +1,7 @@
 <template>
   <div class="player--row">
       <div class="song-info--column">
-          <h1> Song  Title</h1>
+          <h1> Song Title</h1>
           <h2> artist</h2>
       </div>
       <div class="playing-info--column">
@@ -20,6 +20,10 @@
                   {{soundOn==true?'mdi-volume-high':'mdi-volume-mute'}}
                 </v-icon>
               </div>
+              <v-slider 
+              :max="songLengthSecondsTimeTen"
+              :value="tenthSecondPlaying">
+              </v-slider>
     </div>
   </div>
 </template>
@@ -31,23 +35,37 @@ export default {
   data: function () {
     return {
       songName: 'Chillis',
-      playing: true,
+      playing: false,
       soundOn: true,
+      songLengthSecondsTimeTen: 3760,
+      tenthSecondPlaying: 0,
     }
   },
   methods: {
       playAndPause() {
           this.playing = !this.playing;
+          if(this.playing){
+              this.playingFunc = setInterval(() => {
+			this.tenthSecondPlaying+=1; 
+		}, 100);
+          }
+          if(!this.playing){
+              clearInterval(this.playingFunc);
+          }
       },
       muteAndUnmute(){
           this.soundOn = !this.soundOn;
       },
+    
       next(){
 
       },
       last(){
 
       },
+      oncreate(){
+          this.playAndPause();
+      }
   }
 };
 </script>
@@ -69,10 +87,11 @@ export default {
     }
     .playing-info--column{
         display:flex;
+        flex-direction: column;
         width: 100%;
     }
     .icons--row{
         display:flex;
-        justify-content: left;
+        justify-content: center;
     }
 </style>
