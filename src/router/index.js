@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import Home from "../pages/Home";
 import AlbumsBrowser from "../pages/AlbumsBrowser";
 import PlayistsBrowser from "../pages/PlaylistsBrowser";
-import FavoriteSongsBrowser from "../pages/FavoriteSongsBrowser";
+import SongsBrowser from "../pages/SongsBrowser";
 import FriendsBrowser from "../pages/FriendsBrowser";
 
 Vue.use(VueRouter);
@@ -32,7 +32,7 @@ const routes = [
       {
         path: "/songs",
         name: "Songs",
-        component: FavoriteSongsBrowser
+        component: SongsBrowser
       },
       {
         path: "/friends",
