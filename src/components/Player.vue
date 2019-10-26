@@ -12,6 +12,12 @@
                   @click="playAndPause()"
                   size="65">
                   {{playing==true?'mdi-pause':'mdi-play'}}
+                </v-icon><v-icon
+                  :class="{ 'show-btns': hover }"
+                  :color="transparent"
+                  @click="muteAndUnmute()"
+                  size="65">
+                  {{soundOn==true?'mdi-volume-high':'mdi-volume-mute'}}
                 </v-icon>
               </div>
     </div>
@@ -25,12 +31,16 @@ export default {
   data: function () {
     return {
       songName: 'Chillis',
-      playing: true
+      playing: true,
+      soundOn: true,
     }
   },
   methods: {
       playAndPause() {
           this.playing = !this.playing;
+      },
+      muteAndUnmute(){
+          this.soundOn = !this.soundOn;
       },
       next(){
 
