@@ -15,6 +15,8 @@
   </v-app-bar>
 </template>
 
+<style scoped src="./navigation-bar.css"/>
+
 <script>
 export default {
   name: "navigationBar",

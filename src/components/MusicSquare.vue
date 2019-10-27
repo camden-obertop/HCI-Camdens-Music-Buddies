@@ -89,7 +89,7 @@
   </v-hover>
 </template>
 
-<style scoped src="./layout.css"/>
+<style scoped src="./music-square.css"/>
 
 <script>
 export default {

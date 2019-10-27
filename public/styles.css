@@ -1,5 +1,6 @@
 /* font */
 body, div, table { color: #FFFFFF; font: 16px "Poetsen One", normal; font-weight: normal; font-size: 15pt;}
+h1 { font-weight:normal; }
 
 /* scrollbar */
 /* width */
