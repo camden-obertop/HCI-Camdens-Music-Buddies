@@ -14,6 +14,7 @@
 <script>
 import MusicSquare from "../components/MusicSquare";
 import SlottedTable from "../components/SlottedTable";
+import { mapGetters } from "vuex";
 export default {
   name: "Home",
   components: {
@@ -21,9 +22,9 @@ export default {
     "slotted-table": SlottedTable
   },
   computed: {
-  	songs: function () {
-  		return this.$store.state.songs;
-  	}
+    ...mapGetters([
+      'songs'
+    ])
   },
   data: () => ({
     columns: 4,

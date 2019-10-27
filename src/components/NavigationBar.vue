@@ -1,19 +1,18 @@
 <template>
 	<v-app-bar app>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-tabs>
-        <v-tab v-for="header in headers" :key="header">
-        	{{ header }}
-        </v-tab>
-      </v-tabs>
-       <v-text-field
-        flat
-        solo-inverted
-        hide-details
-        label="Search"
-        class="hidden-sm-and-down"
-      ></v-text-field>
-    </v-app-bar>
+    <v-app-bar-nav-icon />
+    <v-tabs :value="activeTab">
+      <v-tab 
+        v-for="header in headers" 
+        :key="header" 
+        @click="navigateToPage(header)"
+      >
+      	{{ header }}
+      </v-tab>
+    </v-tabs>
+    <!-- TODO Make this look nicer and to be properly lined up -->
+    <v-autocomplete label="Search:" id="searchBar" />
+  </v-app-bar>
 </template>
 
 <script>
@@ -22,6 +21,16 @@ export default {
   data: function () {
     return {
     	headers: ['Home', 'Albums', 'Playlists', 'Songs', 'Friends']
+    }
+  },
+  methods: {
+    navigateToPage(pageName) {
+      this.$store.dispatch('navigateToPage', pageName);
+    }
+  },
+  computed: {
+    activeTab: function () {
+      return this.headers.indexOf(this.$route.name);
     }
   }
 };

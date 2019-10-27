@@ -1,8 +1,8 @@
 <template>
-  <slotted-table :maxRows="maxRows" :columns="columns" :items="songs">
+  <slotted-table :maxRows="maxRows" :columns="columns" :items="playlists">
     <template #cell="data">
       <music-square
-        :isPlaylist="false"
+        :isPlaylist="true"
         :musicInfo="data.item"
       />
     </template>
@@ -14,16 +14,17 @@
 <script>
 import MusicSquare from "../components/MusicSquare";
 import SlottedTable from "../components/SlottedTable";
+import { mapGetters } from "vuex";
 export default {
-  name: "Home",
+  name: "playlistBrowser",
   components: {
     "music-square": MusicSquare,
     "slotted-table": SlottedTable
   },
   computed: {
-  	songs: function () {
-  		return this.$store.state.songs;
-  	}
+    ...mapGetters([
+      'playlists'
+    ])
   },
   data: () => ({
     columns: 4,

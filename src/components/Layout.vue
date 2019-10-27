@@ -5,26 +5,24 @@
     <v-content class="gridContent">
       <router-view></router-view>
     </v-content>
-    <player class="gridPlayer" style="border-style: solid;"/>
+    <player-controls class="gridPlayer" style="border-style: solid;" />
   </div>
 </template>
 
 <script>
   import NavigationBar from './NavigationBar';
   import QueueDrawer from './QueueDrawer';
-  import Player from './Player';
+  import PlayerControls from './PlayerControls';
 export default {
   name: "layout",
   components: {
     'navigation-bar': NavigationBar,
     'queue-drawer': QueueDrawer,
-    'player': Player
+    'player-controls': PlayerControls
   },
-  data: function () {
-    return {
-      open: true
-    }
-  }
+  data: () => ({
+    open: true
+  })
 };
 </script>
 <style scoped>
