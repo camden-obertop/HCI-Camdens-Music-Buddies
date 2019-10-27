@@ -77,10 +77,10 @@
       </v-img>
       <v-card-text class="ma-0 pa-0 text-center title">
         <div v-if="!isPlaylist">
-        {{musicInfo.title}}
+          {{ musicInfo.title }}
         </div>
         <v-btn v-else-if="isPlaylist" text @click="navigateToPage()">
-          {{musicInfo.title}}
+          {{ musicInfo.title }}
         </v-btn>
       </v-card-text>
       <v-card-text v-if="!isPlaylist" class="ml-5 pa-0 text-center subtitle-2"
@@ -97,7 +97,8 @@
 </template>
 
 <script>
-  import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
+import router from "../router";
 export default {
   props: {
     musicInfo: {
@@ -108,9 +109,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'playlists'
-    ]),
+    ...mapGetters(["playlists"]),
     platformIconURL: function() {
       if (this.musicInfo.platform === "Spotify") {
         return "./assets/spotify-logo.png";
@@ -136,7 +135,11 @@ export default {
       console.log(`Added to playlist ${playlist.title}`);
     },
     navigateToPage() {
-      console.log(this.playlist.playlistID);
+      console.log(this.musicInfo.ID);
+      router.push({
+        name: "Playlist",
+        params: { playlistID: this.musicInfo.ID }
+      });
     }
   },
   data: () => ({
