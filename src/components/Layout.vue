@@ -11,6 +11,8 @@
   </div>
 </template>
 
+<style scoped src="./layout.css"/>
+
 <script>
   import NavigationBar from './NavigationBar';
   import QueueDrawer from './QueueDrawer';
@@ -27,4 +29,3 @@ export default {
   }
 };
 </script>
-<style scoped src="./layout.css"/>

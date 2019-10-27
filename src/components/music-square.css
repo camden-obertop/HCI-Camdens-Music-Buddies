@@ -1,12 +1,12 @@
 .v-img {
-    transition: opacity 0.2s ease-in-out;
-    opacity: 0.9;
-  }
-  
-  .v-img:not(.on-hover) {
-    opacity: 1;
-  }
-  
-  .show-btns {
-    color: rgba(255, 255, 255, 1) !important;
-  }
+  transition: opacity 0.2s ease-in-out;
+  opacity: 0.5;
+}
+
+.v-img:not(.on-hover) {
+  opacity: 1;
+}
+
+.show-btns {
+  color: rgba(255, 255, 255, 1) !important;
+}

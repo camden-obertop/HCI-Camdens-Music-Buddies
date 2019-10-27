@@ -1,6 +1,5 @@
 /* font */
-body, div, table { color: #FFFFFF; font: 16px "Poetsen One", normal; font-weight: normal; font-size: 15pt;}
-h1 { font-weight:normal; }
+body, div { color: #FFFFFF; font: 18px "Poetsen One", normal !important; font-weight: normal; }
 
 /* scrollbar */
 /* width */

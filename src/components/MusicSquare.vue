@@ -1,7 +1,8 @@
 <template>
   <v-hover v-slot:default="{ hover }">
     <v-card
-      height="275px"
+      color="#D50059"
+      height="260px"
       width="200px"
       :class="{ 'on-hover': hover }"
       elevation="0"
@@ -75,10 +76,10 @@
           </v-row>
         </v-container>
       </v-img>
-      <v-card-text class="ma-0 pa-0 text-center title">{{
+      <v-card-text style="color: #FFFFFF; font: 22px 'Poetsen One', normal !important;" class="ma-0 pa-0 text-center">{{
         musicInfo.title
       }}</v-card-text>
-      <v-card-text v-if="!isPlaylist" class="ml-5 pa-0 text-center subtitle-2"
+      <v-card-text v-if="!isPlaylist" class="ml-5 pa-0 text-center subtitle-2 white--text"
         >{{ musicInfo.artist }}
         <v-img
           style="display:inline-block; float:right; margin-right:25px"
@@ -90,6 +91,8 @@
     </v-card>
   </v-hover>
 </template>
+
+<style scoped src="./music-square.css"/>
 
 <script>
   import { mapGetters } from "vuex";
@@ -138,18 +141,3 @@ export default {
   })
 };
 </script>
-
-<style scoped>
-.v-img {
-  transition: opacity 0.2s ease-in-out;
-  opacity: 0.5;
-}
-
-.v-img:not(.on-hover) {
-  opacity: 1;
-}
-
-.show-btns {
-  color: rgba(255, 255, 255, 1) !important;
-}
-</style>
