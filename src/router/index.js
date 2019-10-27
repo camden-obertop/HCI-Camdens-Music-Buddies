@@ -8,6 +8,7 @@ import PlayistsBrowser from "../pages/PlaylistsBrowser";
 import SearchResults from "../pages/SearchResults";
 import SongsBrowser from "../pages/SongsBrowser";
 import PlaylistBrowser from "../pages/PlaylistBrowser";
+import SettingsBrowser from "../pages/SettingsBrowser";
 
 Vue.use(VueRouter);
 
@@ -50,6 +51,11 @@ const routes = [
         path: "/searchResults",
         name: "Search",
         component: SearchResults
+      },
+      {
+        path: "/settings",
+        name: "Settings",
+        component: SettingsBrowser
       }
     ]
   }
