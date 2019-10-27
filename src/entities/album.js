@@ -5,4 +5,8 @@ export default class Album {
 		this.platform = platform;
 		this.artURL = artURL;
 	}
+
+	toString() {
+		return `${this.title} ${this.artist} ${this.platform} ${this.artURL}`;
+	}
 }
