@@ -1,11 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Layout from "../components/Layout";
-import Home from "../pages/Home";
 import AlbumsBrowser from "../pages/AlbumsBrowser";
-import PlayistsBrowser from "../pages/PlaylistsBrowser";
-import SongsBrowser from "../pages/SongsBrowser";
 import FriendsBrowser from "../pages/FriendsBrowser";
+import Home from "../pages/Home";
+import PlayistsBrowser from "../pages/PlaylistsBrowser";
+import SearchResults from "../pages/SearchResults";
+import SongsBrowser from "../pages/SongsBrowser";
 
 Vue.use(VueRouter);
 
@@ -38,6 +39,11 @@ const routes = [
         path: "/friends",
         name: "Friends",
         component: FriendsBrowser
+      },
+      {
+        path: "/searchResults",
+        name: "Search",
+        component: SearchResults
       }
     ]
   }
