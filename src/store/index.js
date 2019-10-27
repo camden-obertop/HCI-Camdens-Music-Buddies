@@ -11,7 +11,7 @@ const DREAMLAND = new Song('Dreamland', 'Chills', 'Spotify', './assets/dreamland
 const RUN = new Song('Run', 'Awolnation', 'Youtube', './assets/awolnation.jpg');
 
 const IN_RAINBOW = new Album("In Rainbows", "Radiohead", "Spotify", "./assets/in-rainbows.jpg");
-const FACE_STABBERS = new Album("Face Stabbers","Oh Sees", "Spotify", "./assets/face-stabbers.jpg");
+const FACE_STABBERS = new Album("Face Stabbers","Oh Sees", "Spotify", "./assets/face-stabber.jpg");
 const JINX = new Album("Jinx","Crumb","Spotify", "./assets/jinx.png");
 const NONAGON_INFINITY = new Album("Nonagon Infinity","King Gizzard","Spotify" ,"./assets/nonagon-infinity.jpg");
 const ODDMENTS = new Album("Oddments","King Gizzard", "Spotify", "./assets/oddments.jpg");
@@ -68,6 +68,9 @@ const actions = {
 const getters = {
 	playlists: (state) => {
 		return state.playlists;
+	},
+	albums: (state) => {
+		return state.albums;
 	},
 	songs: (state) => {
 		return state.songs;

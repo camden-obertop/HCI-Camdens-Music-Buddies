@@ -1,3 +1,4 @@
+<!-- TODO Add support for infinite rows -->
 <template>
   <v-container>
     <template v-for="i in Math.ceil(items.length/maxRows)">
