@@ -1,12 +1,13 @@
 export default class Playlist {
-	constructor(title, songs, artURL) {
+	constructor(title, songs, artURL, ID) {
 		this.title = title;
 		this.songs = songs;
 		this.artURL = artURL;
+		this.ID = ID;
 	}
 
 	toString() {
-		return `${this.title} ${this.songs.size} ${this.artURL}`;
+		return `${this.title} ${this.songs.size} ${this.artURL} ${this.ID}`;
 	}
 
 	addSong(song) {

@@ -75,9 +75,14 @@
           </v-row>
         </v-container>
       </v-img>
-      <v-card-text class="ma-0 pa-0 text-center title">{{
-        musicInfo.title
-      }}</v-card-text>
+      <v-card-text class="ma-0 pa-0 text-center title">
+        <div v-if="!isPlaylist">
+        {{musicInfo.title}}
+        </div>
+        <v-btn v-else-if="isPlaylist" text @click="navigateToPage()">
+          {{musicInfo.title}}
+        </v-btn>
+      </v-card-text>
       <v-card-text v-if="!isPlaylist" class="ml-5 pa-0 text-center subtitle-2"
         >{{ musicInfo.artist }}
         <v-img
@@ -129,6 +134,9 @@ export default {
     },
     onAddPlaylist(playlist) {
       console.log(`Added to playlist ${playlist.title}`);
+    },
+    navigateToPage() {
+      console.log(this.playlist.playlistID);
     }
   },
   data: () => ({

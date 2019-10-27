@@ -7,6 +7,7 @@ import Home from "../pages/Home";
 import PlayistsBrowser from "../pages/PlaylistsBrowser";
 import SearchResults from "../pages/SearchResults";
 import SongsBrowser from "../pages/SongsBrowser";
+import PlaylistBrowser from "../pages/PlaylistBrowser";
 
 Vue.use(VueRouter);
 
@@ -29,6 +30,11 @@ const routes = [
         path: "/playlists",
         name: "Playlists",
         component: PlayistsBrowser
+      },
+      {
+        path: "/playlists/:playlistID",
+        name: "Playlist",
+        component: PlaylistBrowser
       },
       {
         path: "/songs",

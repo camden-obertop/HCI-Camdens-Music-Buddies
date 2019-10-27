@@ -27,8 +27,8 @@ const state = {
 		ODDMENTS, OK_COMPUTER
 	],
 	playlists: [
-		new Playlist('Cool Songs', new Set([DREAMLAND, RUN]), './assets/foot-lettuce.png'),
-		new Playlist('Cool Songs', new Set([DREAMLAND, RUN]), './assets/foot-lettuce.png'),
+		new Playlist('Cool Songs', new Set([DREAMLAND, RUN]), './assets/foot-lettuce.png', 0),
+		new Playlist('Cool Songs', new Set([DREAMLAND, RUN]), './assets/foot-lettuce.png', 1),
 	],
 	queue: {
 		title: 'Queue',
