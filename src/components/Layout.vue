@@ -5,7 +5,7 @@
     <v-content class="gridContent">
       <router-view></router-view>
     </v-content>
-    <div class="gridPlayer" style="border-style: solid;">
+    <div class="gridPlayer" style="background-color:#11171C;">
       Player
     </div>
   </div>

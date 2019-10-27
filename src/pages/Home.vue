@@ -1,6 +1,6 @@
 <template>
   <div>
-	<h1> I am HOME </h1>
+	<p> I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br>I am HOME<br> </p>
   </div>
 </template>
 

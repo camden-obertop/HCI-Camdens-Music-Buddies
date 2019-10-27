@@ -1,8 +1,8 @@
 <template>
-	<v-app-bar app>
+	<v-app-bar color="#11171C" app>
     <v-app-bar-nav-icon />
-    <v-tabs :value="activeTab">
-      <v-tab 
+    <v-tabs :value="activeTab" background-color="transparent">
+      <v-tab
         v-for="header in headers" 
         :key="header" 
         @click="navigateToPage(header)"
