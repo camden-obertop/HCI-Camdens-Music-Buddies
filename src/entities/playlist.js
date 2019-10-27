@@ -5,6 +5,10 @@ export default class Playlist {
 		this.artURL = artURL;
 	}
 
+	toString() {
+		return `${this.title} ${this.songs.size} ${this.artURL}`;
+	}
+
 	addSong(song) {
 		this.songs.push(song);
 	}
