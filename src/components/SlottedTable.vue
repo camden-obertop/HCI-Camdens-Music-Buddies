@@ -2,7 +2,7 @@
 <template>
   <v-container>
     <template v-for="i in Math.ceil(items.length/maxRows)">
-      <v-row align="start" :key="i">
+      <v-row :key="i">
         <v-col v-for="item in items.slice((i-1)*columns, i*columns)" :key="item.toString()">
           <div style="margin-left: 25%;">
             <slot name="cell" :item="item"/>
