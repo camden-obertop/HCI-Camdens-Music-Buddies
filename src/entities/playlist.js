@@ -1,7 +1,8 @@
 export default class Playlist {
-	constructor(name, songs) {
-		this.name = name;
+	constructor(title, songs, artURL) {
+		this.title = title;
 		this.songs = songs;
+		this.artURL = artURL;
 	}
 
 	addSong(song) {

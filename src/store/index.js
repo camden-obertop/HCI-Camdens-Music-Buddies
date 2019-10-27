@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import Song from '../entities/song';
+import Album from '../entities/album';
 import Playlist from '../entities/playlist';
 import router from '../router';
 
