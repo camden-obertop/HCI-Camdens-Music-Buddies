@@ -1,10 +1,10 @@
 <template>
-	<v-app-bar app>
+	<v-app-bar color="#11171C" dark app>
     <v-app-bar-nav-icon />
-    <v-tabs :value="activeTab">
-      <v-tab 
+    <v-tabs :value="activeTab" dark slider-color="#D50059" background-color="transparent">
+      <v-tab
         v-for="header in headers" 
-        :key="header" 
+        :key="header"
         @click="navigateToPage(header)"
       >
       	{{ header }}
@@ -14,6 +14,8 @@
     <v-autocomplete label="Search:" id="searchBar" />
   </v-app-bar>
 </template>
+
+<style scoped src="./navigation-bar.css"/>
 
 <script>
 export default {
