@@ -13,68 +13,76 @@
         :class="{ 'on-hover': hover }"
         :src="musicInfo.artURL"
       >
-        <v-container class="fill-height">
-          <v-row justify="space-between">
-            <v-col>
-              <v-btn
-                v-if="!isPlaylist"
-                :class="{ 'show-btns': hover }"
-                :color="hover && starSelected ? 'yellow' : transparent"
-                @click="onAddFavorite()"
-                icon
-              >
-                <v-icon
-                  :class="{ 'show-btns': hover }"
-                  :color="hover && starSelected ? 'yellow' : transparent"
-                >
-                  mdi-star
-                </v-icon>
-              </v-btn>
-            </v-col>
-            <v-col>
-              <v-btn :class="{ 'show-btns': hover }" :color="transparent" icon>
-                <v-icon
-                  :class="{ 'show-btns': hover }"
-                  :color="transparent"
-                  @click="onPlay()"
-                  size="65"
-                >
-                  mdi-play
-                </v-icon>
-              </v-btn>
-            </v-col>
-            <v-col>
-              <v-menu offset-x>
-                <template v-slot:activator="{ on }">
+        <v-fade-transition>
+          <v-overlay
+            v-if="hover"
+            absolute
+            color="black"
+          >
+            <v-container class="fill-height">
+              <v-row justify="space-between">
+                <v-col>
                   <v-btn
                     v-if="!isPlaylist"
                     :class="{ 'show-btns': hover }"
-                    :color="transparent"
-                    v-on="on"
+                    :color="hover && starSelected ? 'yellow' : transparent"
+                    @click="onAddFavorite()"
                     icon
                   >
                     <v-icon
                       :class="{ 'show-btns': hover }"
-                      :color="transparent"
+                      :color="hover && starSelected ? 'yellow' : transparent"
                     >
-                      mdi-plus
+                      mdi-star
                     </v-icon>
                   </v-btn>
-                </template>
-                <v-list>
-                  <v-list-item
-                    v-for="(item, index) in playlists"
-                    :key="index"
-                    @click="onAddPlaylist(item)"
-                    ><v-list-item-title>{{
-                      item.title
-                    }}</v-list-item-title></v-list-item
-                  >
-                </v-list>
-              </v-menu>
-            </v-col>
-          </v-row>
-        </v-container>
+                </v-col>
+                <v-col>
+                  <v-btn :class="{ 'show-btns': hover }" :color="transparent" icon>
+                    <v-icon
+                      :class="{ 'show-btns': hover }"
+                      :color="transparent"
+                      @click="onPlay()"
+                      size="65"
+                    >
+                      mdi-play
+                    </v-icon>
+                  </v-btn>
+                </v-col>
+                <v-col>
+                  <v-menu offset-x>
+                    <template v-slot:activator="{ on }">
+                      <v-btn
+                        v-if="!isPlaylist"
+                        :class="{ 'show-btns': hover }"
+                        :color="transparent"
+                        v-on="on"
+                        icon
+                      >
+                        <v-icon
+                          :class="{ 'show-btns': hover }"
+                          :color="transparent"
+                        >
+                          mdi-plus
+                        </v-icon>
+                      </v-btn>
+                    </template>
+                    <v-list>
+                      <v-list-item
+                        v-for="(item, index) in playlists"
+                        :key="index"
+                        @click="onAddPlaylist(item)"
+                        ><v-list-item-title>{{
+                          item.title
+                        }}</v-list-item-title></v-list-item
+                      >
+                    </v-list>
+                  </v-menu>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-overlay>
+        </v-fade-transition>
       </v-img>
       <v-card-text style="color: #FFFFFF; font: 22px 'Poetsen One', normal !important;" class="ma-0 pa-0 text-center">{{
         musicInfo.title
