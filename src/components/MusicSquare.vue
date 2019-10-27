@@ -1,7 +1,7 @@
 <template>
   <v-hover v-slot:default="{ hover }">
     <v-card
-      color="#D50059"
+      color="transparent"
       height="260px"
       width="200px"
       :class="{ 'on-hover': hover }"
@@ -79,7 +79,7 @@
       <v-card-text style="color: #FFFFFF; font: 22px 'Poetsen One', normal !important;" class="ma-0 pa-0 text-center">{{
         musicInfo.title
       }}</v-card-text>
-      <v-card-text v-if="!isPlaylist" class="ml-5 pa-0 text-center subtitle-2 white--text"
+      <v-card-text v-if="!isPlaylist" style="color: #D3D3D3; font:18px 'Poetsen One', normal !important;" class="ml-5 pa-0 text-center"
         >{{ musicInfo.artist }}
         <v-img
           style="display:inline-block; float:right; margin-right:25px"

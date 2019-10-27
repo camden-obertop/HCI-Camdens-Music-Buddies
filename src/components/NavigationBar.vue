@@ -11,11 +11,9 @@
       </v-tab>
     </v-tabs>
     <!-- TODO Make this look nicer and to be properly lined up -->
-    <v-autocomplete label="Search:" id="searchBar" />
+    <v-autocomplete label="Search:" id="searchBar" class="pt-4" />
   </v-app-bar>
 </template>
-
-<style scoped src="./navigation-bar.css"/>
 
 <script>
 export default {
