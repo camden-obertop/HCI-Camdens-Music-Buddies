@@ -53,6 +53,9 @@ const mutations = {
 	clearQueue: (state) => {
 		state.queue = [];
 		state.queueIndex = 0;
+	},
+	setQueueIndex: (state, queueIndex) => {
+		state.queueIndex = queueIndex;
 	}
 };
 
@@ -91,6 +94,20 @@ const actions = {
 			}
 		}
 	},
+	skipQueueBackwards: (state) => {
+		state.dispatch('setQueueIndex', state.getters.queueIndex - 1);
+		console.log(`Moving the queue backwards.`);
+	},
+	skipQueueForwards: (state) => {
+		state.dispatch('setQueueIndex', state.getters.queueIndex + 1);
+		console.log(`Moving the queue forwards.`);
+	},
+	// This takes the requested index and performs some operations on it
+	// to make it a valid queue index.
+	setQueueIndex: (state, index) => {
+		console.log((index + state.getters.queueLength) % state.getters.queueLength);
+		state.commit('setQueueIndex', (index + state.getters.queueLength) % state.getters.queueLength);
+	},
 	navigateToPage: (state, pageName) => {
 		if (router.history.current.name !== pageName) {
 			router.push({ name: pageName });
@@ -114,11 +131,17 @@ const getters = {
 	currentQueueSong: (state) => {
 		const currentSong = state.queue.songs[state.queueIndex];
 		const blankSong = new Song('', '', '', '', '');
-		if(currentSong) {
+		if (currentSong) {
 			return currentSong;
 		} else {
 			return blankSong;
 		}
+	},
+	queueLength: (state) => {
+		return state.queue.songs.length;
+	},
+	queueIndex: (state) => {
+		return state.queueIndex;
 	}
 };
 

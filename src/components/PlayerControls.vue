@@ -1,35 +1,66 @@
 <template>
-  <div class="player--row">
-    <div class="song-info--column">
+  <v-row>
+    <v-col>
       <h1>{{ currentQueueSong.title }}</h1>
       <h2>{{ currentQueueSong.artist }}</h2>
       <!-- TODO Add the art image here -->
-    </div>
-    <div class="playing-info--column">
-      <div class="icons--row">
-        <v-hover v-slot:default="{ playButtonHover }">
+    </v-col>
+    <!-- TODO properly center these buttons later so we don't need the cols -->
+    <v-col>
+      <v-row>
+        <v-col />
+        <v-col />
+        <v-col>
           <v-icon
             :class="{ 'show-btns': playButtonHover }"
-            @click="togglePlaying()"
+            @click="skipQueueBackwards()"
             size="65"
           >
-            {{currentQueueSong.isPlaying() ?'mdi-pause':'mdi-play'}}
+            {{ 'mdi-skip-backward' }}
           </v-icon>
-        </v-hover>
-        <v-hover v-slot:default="{ muteButtonHover }">
-          <v-icon
-            :class="{ 'show-btns': muteButtonHover }"
-            @click="toggleMute()"
+        </v-col>
+        <v-col>
+          <v-hover v-slot:default="{ playButtonHover }">
+            <v-icon
+              :class="{ 'show-btns': playButtonHover }"
+              @click="togglePlaying()"
+              size="65"
+            >
+              {{currentQueueSong.isPlaying() ?'mdi-pause':'mdi-play'}}
+            </v-icon>
+          </v-hover>
+        </v-col>
+        <v-col>
+          <v-icon 
+            :class="{ 'show-btns': playButtonHover }"
+            @click="skipQueueForwards()"
             size="65"
           >
-            {{ currentQueueSong.isMuted() ? 'mdi-volume-mute': 'mdi-volume-high'}}
+            {{ 'mdi-skip-forward' }}
           </v-icon>
-        </v-hover>
-      </div>
-      <!-- TODO Reimplement the value to bind the seeking -->
-      <v-slider :max="100" :min="0" />
-    </div>
-  </div>
+          <!-- TODO Place the forward jump button here -->
+        </v-col>
+        <v-col>
+          <v-hover v-slot:default="{ muteButtonHover }">
+            <v-icon
+              :class="{ 'show-btns': muteButtonHover }"
+              @click="toggleMute()"
+              size="65"
+            >
+              {{ currentQueueSong.isMuted() ? 'mdi-volume-mute': 'mdi-volume-high'}}
+            </v-icon>
+          </v-hover>
+        </v-col>
+        <v-col />
+        <!-- </v-layout> -->
+      </v-row>
+      <v-row>
+        <!-- TODO Reimplement the value to bind the seeking -->
+        <v-slider thumb-label="always" :max="100" :min="0" />
+      </v-row>
+    </v-col>
+    <v-col />
+  </v-row>
 </template>
 
 <script>
@@ -49,7 +80,9 @@ export default {
   methods: {
     ...mapActions([
       'togglePlaying',
-      'toggleMute'
+      'toggleMute',
+      'skipQueueBackwards',
+      'skipQueueForwards'
     ]),
   }
 };
