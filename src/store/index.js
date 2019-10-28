@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { Song, Album, Playlist } from '../entities';
 import { SONGS, DREAMLAND, RUN } from '../data/song_data';
+import { NUMBER15, NUMBER15_YOUTUBE, HARD_IN_THE_PAINT, SWAP_MEET, FRIDAY_NIGHT, SIDELINED, NUMBER15_LYRICS} from '../data/song_data';
 import ALBUMS from '../data/album_data';
 import router from "../router";
 
@@ -10,6 +11,7 @@ Vue.use(Vuex);
 console.log(SONGS);
 
 const state = {
+	searchResults: [NUMBER15, NUMBER15_YOUTUBE, HARD_IN_THE_PAINT, SWAP_MEET, FRIDAY_NIGHT, SIDELINED, NUMBER15_LYRICS, DREAMLAND],
 	songs: SONGS,
 	albums: ALBUMS,
 	playlists: [
@@ -134,6 +136,9 @@ const getters = {
 	},
 	songs: (state) => {
 		return state.songs;
+	},
+	searchResults: (state) => {
+		return state.searchResults;
 	},
 	queue: (state) => {
 		return state.queue;
