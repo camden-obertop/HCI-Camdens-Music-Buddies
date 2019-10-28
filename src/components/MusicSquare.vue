@@ -36,7 +36,7 @@
                 <v-icon
                   :class="{ 'show-btns': hover }"
                   :color="transparent"
-                  @click="onPlay()"
+                  @click="play(musicInfo)"
                   size="65"
                 >
                   mdi-play
@@ -66,10 +66,11 @@
                     v-for="(item, index) in playlists"
                     :key="index"
                     @click="onAddPlaylist(item)"
-                    ><v-list-item-title>{{
-                      item.title
-                    }}</v-list-item-title></v-list-item
                   >
+                    <v-list-item-title>
+                      {{ item.title }}
+                    </v-list-item-title>
+                  </v-list-item>
                 </v-list>
               </v-menu>
             </v-col>
@@ -84,17 +85,23 @@
           />
         </v-fade-transition>
       </v-img>
-      <v-card-text style="color: #FFFFFF; font: 22px 'Poetsen One', normal !important;" class="ma-0 pa-0 text-center">{{
-        musicInfo.title
-      }}</v-card-text>
-      <v-card-text v-if="!isPlaylist" style="color: #D3D3D3; font:18px 'Poetsen One', normal !important;" class="ml-5 pa-0 text-center"
-        >{{ musicInfo.artist }}
+      <v-card-text style="color: #FFFFFF; font: 22px 'Poetsen One', normal !important;" class="ma-0 pa-0 text-center">
+        <div v-if="!isPlaylist">
+          {{ musicInfo.title }}
+        </div>
+        <v-btn v-else-if="isPlaylist" text @click="navigateToPage()">
+          {{ musicInfo.title }}
+        </v-btn>
+      </v-card-text>
+      <v-card-text v-if="!isPlaylist" class="ml-5 pa-0 text-center subtitle-2" style="color: #D3D3D3; font:18px 'Poetsen One', normal !important;"
+      >
+        {{ musicInfo.artist }}
         <v-img
           style="display:inline-block; float:right; margin-right:25px"
           width="20px"
           height="20px"
           :src="platformIconURL"
-        ></v-img>
+        />
       </v-card-text>
     </v-card>
   </v-hover>
@@ -103,7 +110,7 @@
 <style scoped src="./music-square.css"/>
 
 <script>
-  import { mapGetters } from "vuex";
+  import { mapGetters, mapActions } from "vuex";
 export default {
   props: {
     musicInfo: {
@@ -114,9 +121,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'playlists'
-    ]),
+    ...mapGetters(["playlists"]),
     platformIconURL: function() {
       if (this.musicInfo.platform === "Spotify") {
         return "./assets/spotify-logo.png";
@@ -127,6 +132,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'play'
+    ]),
     onAddFavorite() {
       this.starSelected = !this.starSelected;
       if (this.starSelected === true) {
@@ -135,11 +143,13 @@ export default {
         console.log("Unfavorited.");
       }
     },
-    onPlay() {
-      console.log("Played");
-    },
-    onAddPlaylist(playlist) {
-      console.log(`Added to playlist ${playlist.title}`);
+    navigateToPage() {
+      console.log('Navigating music');
+      console.log(this.musicInfo.ID);
+      this.$router.push({
+        name: "Playlist",
+        params: { playlistID: this.musicInfo.ID }
+      });
     }
   },
   data: () => ({

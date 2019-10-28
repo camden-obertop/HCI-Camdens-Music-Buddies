@@ -7,29 +7,36 @@
         :key="header"
         @click="navigateToPage(header)"
       >
-      	{{ header }}
+        {{ header }}
       </v-tab>
     </v-tabs>
     <!-- TODO Make this look nicer and to be properly lined up -->
-    <v-autocomplete label="Search:" id="searchBar" class="pt-4" />
+    <v-autocomplete label="Search:" id="searchBar" class="pt-4" @click="navigateToPage('Search')"/>
+    <v-btn @click="navigateToPage('Settings')" icon>
+      <v-icon x-large>mdi-settings</v-icon>
+    </v-btn>
   </v-app-bar>
 </template>
 
 <script>
 export default {
   name: "navigationBar",
-  data: function () {
+  data: function() {
     return {
-    	headers: ['Home', 'Albums', 'Playlists', 'Songs', 'Friends']
-    }
+      headers: ["Home", "Albums", "Playlists", "Songs", "Friends"]
+    };
   },
   methods: {
     navigateToPage(pageName) {
-      this.$store.dispatch('navigateToPage', pageName);
+      this.$store.dispatch("navigateToPage", pageName);
     }
   },
   computed: {
-    activeTab: function () {
+    activeTab: function() {
+      const splitPath = this.$route.path.split("/")
+      if (splitPath.length == 3) {
+        return this.headers.indexOf("Playlists");
+      }
       return this.headers.indexOf(this.$route.name);
     }
   }
