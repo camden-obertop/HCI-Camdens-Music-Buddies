@@ -4,8 +4,8 @@
     <v-list style="height: 100%">
       <h3 style="text-align: center;"> {{ queue.title }} </h3>
       <v-list-item 
-        style="background-color: #D50059; margin: 7px 0px" 
         v-for="(song, index) in queue.songs" 
+        :class="[currentQueueSong == song ? 'selected-item ': 'deselected-item']"
         :key="index + 'song'" 
         @click="setQueueIndex(index)"
         selectable
@@ -30,8 +30,20 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'queue'
+      'queue',
+      'currentQueueSong'
     ])
   },
 };
 </script>
+
+<style scoped>
+  .selected-item {
+    background-color: #D50059; 
+    margin: 7px 0px;
+  }
+  .deselected-item {
+      background-color: #1E2830; 
+      margin: 7px 0px;
+  }
+</style>
