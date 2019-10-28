@@ -7,59 +7,62 @@
       :class="{ 'on-hover': hover }"
       elevation="0"
     >
-      <v-img
-        height="200px"
-        width="200px"
-        :class="{ 'on-hover': hover }"
-        :src="musicInfo.artURL"
-      >
+      <v-img height="200px" width="200px" :class="{ 'on-hover': hover }" :src="musicInfo.artURL">
         <v-container class="fill-height">
           <v-row justify="space-between">
             <v-col>
-              <v-btn
-                v-if="!isPlaylist"
-                :class="{ 'show-btns': hover }"
-                :color="hover && starSelected ? 'yellow' : transparent"
-                @click="onAddFavorite()"
-                icon
-              >
-                <v-icon
-                  :class="{ 'show-btns': hover }"
-                  :color="hover && starSelected ? 'yellow' : transparent"
-                >
-                  mdi-star
-                </v-icon>
-              </v-btn>
-            </v-col>
-            <v-col>
-              <v-btn :class="{ 'show-btns': hover }" :color="transparent" icon>
-                <v-icon
-                  :class="{ 'show-btns': hover }"
-                  :color="transparent"
-                  @click="play(musicInfo)"
-                  size="65"
-                >
-                  mdi-play
-                </v-icon>
-              </v-btn>
-            </v-col>
-            <v-col>
-              <v-menu offset-x fixed>
+              <v-tooltip top>
                 <template v-slot:activator="{ on }">
                   <v-btn
                     v-if="!isPlaylist"
                     :class="{ 'show-btns': hover }"
-                    :color="transparent"
+                    :color="hover && starSelected ? 'yellow' : transparent"
                     v-on="on"
+                    @click="onAddFavorite()"
                     icon
                   >
                     <v-icon
                       :class="{ 'show-btns': hover }"
-                      :color="transparent"
-                    >
-                      mdi-plus
-                    </v-icon>
+                      :color="hover && starSelected ? 'yellow' : transparent"
+                    >mdi-star</v-icon>
                   </v-btn>
+                </template>
+                <span>{{starSelected?"Unfavorite":"Favorite"}}</span>
+              </v-tooltip>
+            </v-col>
+            <v-col>
+              <v-tooltip top>
+                <template v-slot:activator="{ on }">
+                  <v-btn :class="{ 'show-btns': hover }" :color="transparent" icon>
+                    <v-icon
+                      :class="{ 'show-btns': hover }"
+                      :color="transparent"
+                      @click="play(musicInfo)"
+                      v-on="on"
+                      size="65"
+                    >mdi-play</v-icon>
+                  </v-btn>
+                </template>
+                <span>Play/Pause</span>
+              </v-tooltip>
+            </v-col>
+            <v-col>
+              <v-menu offset-x fixed>
+                <template v-slot:activator="{ menu }">
+                  <v-tooltip top>
+                    <template v-slot:activator="{ tooltip }">
+                      <v-btn
+                        v-if="!isPlaylist"
+                        :class="{ 'show-btns': hover }"
+                        :color="transparent"
+                        v-on="{...tooltip,...menu}"
+                        icon
+                      >
+                        <v-icon :class="{ 'show-btns': hover }" :color="transparent">mdi-plus</v-icon>
+                      </v-btn>
+                    </template>
+                    <span>Add to playlist</span>
+                  </v-tooltip>
                 </template>
                 <v-list>
                   <v-list-item
@@ -67,9 +70,7 @@
                     :key="index"
                     @click="onAddPlaylist(item)"
                   >
-                    <v-list-item-title>
-                      {{ item.title }}
-                    </v-list-item-title>
+                    <v-list-item-title>{{ item.title }}</v-list-item-title>
                   </v-list-item>
                 </v-list>
               </v-menu>
@@ -77,23 +78,20 @@
           </v-row>
         </v-container>
         <v-fade-transition>
-          <v-overlay
-            v-if="hover"
-            absolute
-            :z-index="-1"
-            color="black"
-          />
+          <v-overlay v-if="hover" absolute :z-index="-1" color="black" />
         </v-fade-transition>
       </v-img>
-      <v-card-text style="color: #FFFFFF; font: 22px 'Poetsen One', normal !important;" class="ma-0 pa-0 text-center">
-        <div v-if="!isPlaylist">
-          {{ musicInfo.title }}
-        </div>
-        <v-btn v-else-if="isPlaylist" text @click="navigateToPage()">
-          {{ musicInfo.title }}
-        </v-btn>
+      <v-card-text
+        style="color: #FFFFFF; font: 22px 'Poetsen One', normal !important;"
+        class="ma-0 pa-0 text-center"
+      >
+        <div v-if="!isPlaylist">{{ musicInfo.title }}</div>
+        <v-btn v-else-if="isPlaylist" text @click="navigateToPage()">{{ musicInfo.title }}</v-btn>
       </v-card-text>
-      <v-card-text v-if="!isPlaylist" class="ml-5 pa-0 text-center subtitle-2" style="color: #D3D3D3; font:18px 'Poetsen One', normal !important;"
+      <v-card-text
+        v-if="!isPlaylist"
+        class="ml-5 pa-0 text-center subtitle-2"
+        style="color: #D3D3D3; font:18px 'Poetsen One', normal !important;"
       >
         {{ musicInfo.artist }}
         <v-img
@@ -110,7 +108,7 @@
 <style scoped src="./music-square.css"/>
 
 <script>
-  import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   props: {
     musicInfo: {
@@ -132,9 +130,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'play'
-    ]),
+    ...mapActions(["play"]),
     onAddFavorite() {
       this.starSelected = !this.starSelected;
       if (this.starSelected === true) {
@@ -144,7 +140,7 @@ export default {
       }
     },
     navigateToPage() {
-      console.log('Navigating music');
+      console.log("Navigating music");
       console.log(this.musicInfo.ID);
       this.$router.push({
         name: "Playlist",
