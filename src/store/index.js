@@ -15,11 +15,11 @@ const state = {
 	albums: ALBUMS,
 	favoriteAlbums: new Array(ODDMENTS_ALBUM, NONAGON_INFINITY),
 	playlists: [
-		new Playlist('Cool Songs', [REDEYES, RUN], './assets/foot-lettuce.png', 1),
+		new Playlist('Cool Songs', [RUN], './assets/foot-lettuce.png', 1),
 	],
 	queue: {
 		title: 'Queue',
-		songs: [REDEYES, RUN]
+		songs: [RUN]
 	},
 	// This refers to the index of the current song in the queue that
 	// is being played.
