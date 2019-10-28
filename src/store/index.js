@@ -1,19 +1,63 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { Song, Album, Playlist } from '../entities';
-import router from '../router';
+import router from "../router";
 
 Vue.use(Vuex);
 
-const DREAMLAND = new Song('Dreamland', 'Chills', 'Spotify', './assets/dreamland.jpg', 'http://popplers5.bandcamp.com/download/track?enc=mp3-128&id=1269403107&stream=1');
-const RUN = new Song('Run', 'Awolnation', 'Youtube', './assets/awolnation.jpg');
+const DREAMLAND = new Song(
+  "Dreamland",
+  "Chills",
+  "Spotify",
+  "./assets/dreamland.jpg",
+  "",
+  "Dreamland"
+);
+const RUN = new Song(
+  "Run",
+  "Awolnation",
+  "Youtube",
+  "./assets/awolnation.jpg",
+  "",
+  "Run"
+);
 
-const IN_RAINBOW = new Album("In Rainbows", "Radiohead", "Spotify", "./assets/in-rainbows.jpg");
-const FACE_STABBERS = new Album("Face Stabbers","Oh Sees", "Spotify", "./assets/face-stabber.jpg");
-const JINX = new Album("Jinx","Crumb","Spotify", "./assets/jinx.png");
-const NONAGON_INFINITY = new Album("Nonagon Infinity","King Gizzard","Spotify" ,"./assets/nonagon-infinity.jpg");
-const ODDMENTS = new Album("Oddments","King Gizzard", "Spotify", "./assets/oddments.jpg");
-const OK_COMPUTER = new Album("Ok Computer","Radiohead", "Spotify", "./assets/ok-computer.jpg");
+const IN_RAINBOW = new Album(
+  "In Rainbows",
+  "Radiohead",
+  "Spotify",
+  "./assets/in-rainbows.jpg",
+  1
+);
+const FACE_STABBERS = new Album(
+  "Face Stabbers",
+  "Oh Sees",
+  "Spotify",
+  "./assets/face-stabber.jpg",
+  2
+);
+const JINX = new Album("Jinx", "Crumb", "Spotify", "./assets/jinx.png", 3);
+const NONAGON_INFINITY = new Album(
+  "Nonagon Infinity",
+  "King Gizzard",
+  "Spotify",
+  "./assets/nonagon-infinity.jpg",
+  4
+);
+const ODDMENTS = new Album(
+  "Oddments",
+  "King Gizzard",
+  "Spotify",
+  "./assets/oddments.jpg",
+  5
+);
+const OK_COMPUTER = new Album(
+  "Ok Computer",
+  "Radiohead",
+  "Spotify",
+  "./assets/ok-computer.jpg",
+  6
+);
 
 const state = {
 	songs: [
@@ -25,8 +69,8 @@ const state = {
 		ODDMENTS, OK_COMPUTER
 	],
 	playlists: [
-		new Playlist('Cool Songs', new Set([DREAMLAND, RUN]), './assets/foot-lettuce.png'),
-		new Playlist('Cool Songs', new Set([DREAMLAND, RUN]), './assets/foot-lettuce.png'),
+		new Playlist('Cool Songs', [DREAMLAND, RUN], './assets/foot-lettuce.png', 1),
+		new Playlist('Cool Songs', [DREAMLAND, RUN], './assets/foot-lettuce.png', 2),
 	],
 	queue: {
 		title: 'Queue',
@@ -149,6 +193,15 @@ const getters = {
 	},
 	queue: (state) => {
 		return state.queue;
+	},
+	// eslint-disable-next-line
+	playlist: (state) => (playlistId) => {
+		console.log(state.playlists.find(
+      playlist => playlist.ID === parseInt(playlistId)
+    ).songs);
+		return state.playlists.find(
+      playlist => playlist.ID === parseInt(playlistId)
+    );
 	},
 	currentQueueSong: (state) => {
 		const currentSong = state.queue.songs[state.queueIndex];

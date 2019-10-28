@@ -77,7 +77,12 @@
         </v-container>
       </v-img>
       <v-card-text class="ma-0 pa-0 text-center title">
-        {{ musicInfo.title }}
+        <div v-if="!isPlaylist">
+          {{ musicInfo.title }}
+        </div>
+        <v-btn v-else-if="isPlaylist" text @click="navigateToPage()">
+          {{ musicInfo.title }}
+        </v-btn>
       </v-card-text>
       <v-card-text v-if="!isPlaylist" class="ml-5 pa-0 text-center subtitle-2"
         >{{ musicInfo.artist }}
@@ -104,9 +109,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'playlists'
-    ]),
+    ...mapGetters(["playlists"]),
     platformIconURL: function() {
       if (this.musicInfo.platform === "Spotify") {
         return "./assets/spotify-logo.png";
@@ -127,6 +130,14 @@ export default {
       } else {
         console.log("Unfavorited.");
       }
+    },
+    navigateToPage() {
+      console.log('Navigating music');
+      console.log(this.musicInfo.ID);
+      this.$router.push({
+        name: "Playlist",
+        params: { playlistID: this.musicInfo.ID }
+      });
     }
   },
   data: () => ({

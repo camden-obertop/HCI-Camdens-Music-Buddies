@@ -1,11 +1,12 @@
 export default class Song {
-	constructor(title, artist, platform, artURL, audioURL) {
+	constructor(title, artist, platform, artURL, albumTitle, audioURL) {
 		this.title = title;
 		this.artist = artist;
 		this.platform = platform;
 		this.artURL = artURL;
+		this.albumTitle = albumTitle;
 		this.audioURL = audioURL;
-
+		
 		this.audio = new Audio(this.audioURL);
 	}
 
