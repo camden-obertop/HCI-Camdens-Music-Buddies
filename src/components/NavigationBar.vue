@@ -1,5 +1,5 @@
 <template>
-	<v-app-bar color="#11171C" dark app>
+	<v-app-bar color="#11171C" dark>
     <v-app-bar-nav-icon @click="toggleDrawer()" />
     <v-tabs :value="activeTab" dark slider-color="#D50059" background-color="transparent">
       <v-tab
