@@ -1,6 +1,6 @@
 <template>
 	<v-app-bar color="#11171C" dark app>
-    <v-app-bar-nav-icon />
+    <v-app-bar-nav-icon @click="toggleDrawer()" />
     <v-tabs :value="activeTab" dark slider-color="#D50059" background-color="transparent">
       <v-tab
         v-for="header in headers" 
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import {mapActions } from 'vuex';
 export default {
   name: "navigationBar",
   data: function() {
@@ -28,9 +29,10 @@ export default {
     };
   },
   methods: {
-    navigateToPage(pageName) {
-      this.$store.dispatch("navigateToPage", pageName);
-    }
+    ...mapActions([
+      'navigateToPage',
+      'toggleDrawer'
+    ])
   },
   computed: {
     activeTab: function() {

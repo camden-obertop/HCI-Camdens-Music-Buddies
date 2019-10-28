@@ -9,6 +9,7 @@ import router from "../router";
 Vue.use(Vuex);
 
 const state = {
+	drawer: true,
 	searchResults: [NUMBER15, NUMBER15_YOUTUBE, HARD_IN_THE_PAINT, SWAP_MEET, FRIDAY_NIGHT, SIDELINED, NUMBER15_LYRICS, DREAMLAND],
 	songs: SONGS,
 	favoriteSongs: new Set([DREAMLAND, NUMBER15_YOUTUBE]),
@@ -53,6 +54,9 @@ const mutations = {
 	},
 	setQueueIndex: (state, queueIndex) => {
 		state.queueIndex = queueIndex;
+	},
+	toggleDrawer: (state) => {
+		state.drawer = !state.drawer;
 	},
 	addToFavoriteSongs: (state, song) => {
 		state.favoriteSongs.add(song);

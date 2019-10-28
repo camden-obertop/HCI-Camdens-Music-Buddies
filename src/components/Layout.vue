@@ -1,7 +1,7 @@
 <template>
   <div class="layoutGrid">
     <navigation-bar class="gridNavigation" />
-    <queue-drawer :drawer-open="open" class="gridQueue" />
+    <queue-drawer :drawer-open="$store.state.drawer" class="gridQueue" />
     <v-content class="gridContent">
       <router-view></router-view>
     </v-content>
@@ -21,9 +21,6 @@ export default {
     'navigation-bar': NavigationBar,
     'queue-drawer': QueueDrawer,
     'player-controls': PlayerControls
-  },
-  data: () => ({
-    open: true
-  })
+  }
 };
 </script>
