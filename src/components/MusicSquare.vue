@@ -48,9 +48,9 @@
             </v-col>
             <v-col>
               <v-menu offset-x fixed>
-                <template v-slot:activator="{ on: menu }">
+                <template v-slot:activator="{ menu }">
                   <v-tooltip top>
-                    <template v-slot:activator="{ on: tooltip }">
+                    <template v-slot:activator="{ tooltip }">
                       <v-btn
                         v-if="!isPlaylist"
                         :class="{ 'show-btns': hover }"
