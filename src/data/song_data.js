@@ -44,29 +44,29 @@ export const FACES = new Song('Faces', 'Crumb', 'Spotify', './assets/jinx.png', 
 export const JINX = new Song('Jinx', 'Crumb', 'Spotify', './assets/jinx.png', 'Jinx');
 
 /* Nonagon Infinity */
-export const ROBOT_STOP = new Song('Robot Stop', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
-export const BIG_FIG_WASP = new Song('Big Fig Wasp', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
-export const GAMMA_KNIFE = new Song('Gamma Knife', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
-export const PEOPLE_VULTURES = new Song('People-Vultures', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
-export const MR_BEAT = new Song('Mr. Beat', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
-export const EVIL_DEATH_ROLL = new Song('Evil Death Roll', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
-export const INVISIBLE_FACE = new Song('Invisible Face', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
-export const WAH_WAH = new Song('Wah Wah', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
-export const ROAD_TRAIN = new Song('Road Train', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
+export const ROBOT_STOP = new Song('Robot Stop', 'King Gizzard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
+export const BIG_FIG_WASP = new Song('Big Fig Wasp', 'King Gizzard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
+export const GAMMA_KNIFE = new Song('Gamma Knife', 'King Gizzard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
+export const PEOPLE_VULTURES = new Song('People-Vultures', 'King Gizzard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
+export const MR_BEAT = new Song('Mr. Beat', 'King Gizzard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
+export const EVIL_DEATH_ROLL = new Song('Evil Death Roll', 'King Gizzard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
+export const INVISIBLE_FACE = new Song('Invisible Face', 'King Gizzard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
+export const WAH_WAH = new Song('Wah Wah', 'King Gizzard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
+export const ROAD_TRAIN = new Song('Road Train', 'King Gizzard', 'Spotify', './assets/nonagon-infinity.jpg', 'Nonagon Infinity');
 
 /* Oddments */
-export const ALLUDA_MAJAKA = new Song('Alluda Majaka', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/oddments.jpg', 'Oddments');
-export const STRESSIN = new Song('Stressin\'', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/oddments.jpg', 'Oddments');
-export const VEGEMITE = new Song('Vegemite', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/oddments.jpg', 'Oddments');
-export const ITS_GOT_OLD = new Song('It\'s Got Old', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/oddments.jpg', 'Oddments');
-export const WORK_THIS_TIME = new Song('Work This Time', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/oddments.jpg', 'Oddments');
-export const ABABCD = new Song('ABABCd', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/oddments.jpg', 'Oddments');
-export const SLEEPWALKER = new Song('Sleepwalker', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/oddments.jpg', 'Oddments');
-export const HOT_WAX = new Song('Hot Wax', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/oddments.jpg', 'Oddments');
-export const CRYING = new Song('Crying', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/oddments.jpg', 'Oddments');
-export const PIPE_DREAM = new Song('Pipe-Dream', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/oddments.jpg', 'Oddments');
-export const HOMELESS_MAN_IN_ADDIDAS = new Song('Homeless Man In Addidas', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/oddments.jpg', 'Oddments');
-export const ODDMENTS = new Song('Oddments', 'King Gizzard & The Lizard Wizard', 'Spotify', './assets/oddments.jpg', 'Oddments');
+export const ALLUDA_MAJAKA = new Song('Alluda Majaka', 'King Gizzard', 'Spotify', './assets/oddments.jpg', 'Oddments');
+export const STRESSIN = new Song('Stressin\'', 'King Gizzard', 'Spotify', './assets/oddments.jpg', 'Oddments');
+export const VEGEMITE = new Song('Vegemite', 'King Gizzard', 'Spotify', './assets/oddments.jpg', 'Oddments');
+export const ITS_GOT_OLD = new Song('It\'s Got Old', 'King Gizzard', 'Spotify', './assets/oddments.jpg', 'Oddments');
+export const WORK_THIS_TIME = new Song('Work This Time', 'King Gizzard', 'Spotify', './assets/oddments.jpg', 'Oddments');
+export const ABABCD = new Song('ABABCd', 'King Gizzard', 'Spotify', './assets/oddments.jpg', 'Oddments');
+export const SLEEPWALKER = new Song('Sleepwalker', 'King Gizzard', 'Spotify', './assets/oddments.jpg', 'Oddments');
+export const HOT_WAX = new Song('Hot Wax', 'King Gizzard', 'Spotify', './assets/oddments.jpg', 'Oddments');
+export const CRYING = new Song('Crying', 'King Gizzard', 'Spotify', './assets/oddments.jpg', 'Oddments');
+export const PIPE_DREAM = new Song('Pipe-Dream', 'King Gizzard', 'Spotify', './assets/oddments.jpg', 'Oddments');
+export const HOMELESS_MAN_IN_ADDIDAS = new Song('Homeless Man In Addidas', 'King Gizzard', 'Spotify', './assets/oddments.jpg', 'Oddments');
+export const ODDMENTS = new Song('Oddments', 'King Gizzard', 'Spotify', './assets/oddments.jpg', 'Oddments');
 
 /* OK Computer */
 export const AIRBAG = new Song('Airbag', 'Radiohead', 'Spotify', './assets/ok-computer.jpg', 'OK Computer');

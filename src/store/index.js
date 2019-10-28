@@ -16,7 +16,6 @@ const state = {
 	favoriteAlbums: new Array(ODDMENTS_ALBUM, NONAGON_INFINITY),
 	playlists: [
 		new Playlist('Cool Songs', [DREAMLAND, RUN], './assets/foot-lettuce.png', 1),
-		new Playlist('Camden SONGSS', [DREAMLAND, NUMBER15], './assets/foot-lettuce.png', 2),
 	],
 	queue: {
 		title: 'Queue',
