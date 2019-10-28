@@ -16,18 +16,18 @@
                   <v-btn
                     v-if="!isPlaylist"
                     :class="{ 'show-btns': hover }"
-                    :color="hover && starSelected ? 'yellow' : transparent"
+                    :color="hover && isFavorited(musicInfo) ? 'yellow' : transparent"
                     v-on="on"
-                    @click="onAddFavorite()"
+                    @click="toggleFavorite(musicInfo)"
                     icon
                   >
                     <v-icon
                       :class="{ 'show-btns': hover }"
-                      :color="hover && starSelected ? 'yellow' : transparent"
+                      :color="hover && isFavorited(musicInfo) ? 'yellow' : transparent"
                     >mdi-star</v-icon>
                   </v-btn>
                 </template>
-                <span>{{starSelected?"Unfavorite":"Favorite"}}</span>
+                <span>{{isFavorited(musicInfo) ?"Unfavorite":"Favorite"}}</span>
               </v-tooltip>
             </v-col>
             <v-col>
@@ -119,7 +119,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["playlists"]),
+    ...mapGetters([
+      "playlists",
+      "favoriteSongs",
+      "isFavorited"
+    ]),
     platformIconURL: function() {
       if (this.musicInfo.platform === "Spotify") {
         return "./assets/spotify-logo.png";
@@ -130,7 +134,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["play"]),
+    ...mapActions([
+      "play",
+      "toggleFavorite"
+    ]),
     onAddFavorite() {
       this.starSelected = !this.starSelected;
       if (this.starSelected === true) {
