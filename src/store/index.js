@@ -1,73 +1,17 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { Song, Album, Playlist } from '../entities';
+import { SONGS, DREAMLAND, RUN } from '../data/song_data';
+import ALBUMS from '../data/album_data';
 import router from "../router";
 
 Vue.use(Vuex);
 
-const DREAMLAND = new Song(
-  "Dreamland",
-  "Chills",
-  "Spotify",
-  "./assets/dreamland.jpg",
-  "",
-  "Dreamland"
-);
-const RUN = new Song(
-  "Run",
-  "Awolnation",
-  "Youtube",
-  "./assets/awolnation.jpg",
-  "",
-  "Run"
-);
-
-const IN_RAINBOW = new Album(
-  "In Rainbows",
-  "Radiohead",
-  "Spotify",
-  "./assets/in-rainbows.jpg",
-  1
-);
-const FACE_STABBERS = new Album(
-  "Face Stabbers",
-  "Oh Sees",
-  "Spotify",
-  "./assets/face-stabber.jpg",
-  2
-);
-const JINX = new Album("Jinx", "Crumb", "Spotify", "./assets/jinx.png", 3);
-const NONAGON_INFINITY = new Album(
-  "Nonagon Infinity",
-  "King Gizzard",
-  "Spotify",
-  "./assets/nonagon-infinity.jpg",
-  4
-);
-const ODDMENTS = new Album(
-  "Oddments",
-  "King Gizzard",
-  "Spotify",
-  "./assets/oddments.jpg",
-  5
-);
-const OK_COMPUTER = new Album(
-  "Ok Computer",
-  "Radiohead",
-  "Spotify",
-  "./assets/ok-computer.jpg",
-  6
-);
+console.log(SONGS);
 
 const state = {
-	songs: [
-		DREAMLAND,
-		RUN
-	],
-	albums: [
-		IN_RAINBOW, FACE_STABBERS, JINX, NONAGON_INFINITY,
-		ODDMENTS, OK_COMPUTER
-	],
+	songs: SONGS,
+	albums: ALBUMS,
 	playlists: [
 		new Playlist('Cool Songs', [DREAMLAND, RUN], './assets/foot-lettuce.png', 1),
 		new Playlist('Cool Songs', [DREAMLAND, RUN], './assets/foot-lettuce.png', 2),

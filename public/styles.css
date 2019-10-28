@@ -1,0 +1,24 @@
+/* font */
+body, div { color: #FFFFFF; font: 18px "Poetsen One", normal !important; font-weight: normal; }
+
+/* scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+  background:#1B1F2E;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(#D50059, #A0008A);
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background:
+        /* top, transparent black, faked with gradient */ 
+        linear-gradient(
+          rgba(0, 0, 0, 0.5), 
+          rgba(0, 0, 0, 0.5)
+        ),
+        /* bottom, gradient */
+        linear-gradient(#D50059, #A0008A);
+}

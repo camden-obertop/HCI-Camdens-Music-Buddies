@@ -1,9 +1,9 @@
 <template>
-  <v-app-bar app>
+	<v-app-bar color="#11171C" dark app>
     <v-app-bar-nav-icon />
-    <v-tabs :value="activeTab">
+    <v-tabs :value="activeTab" dark slider-color="#D50059" background-color="transparent">
       <v-tab
-        v-for="header in headers"
+        v-for="header in headers" 
         :key="header"
         @click="navigateToPage(header)"
       >
@@ -11,7 +11,7 @@
       </v-tab>
     </v-tabs>
     <!-- TODO Make this look nicer and to be properly lined up -->
-    <v-autocomplete label="Search:" id="searchBar" @click="navigateToPage('Search')"/>
+    <v-autocomplete label="Search:" id="searchBar" class="pt-4" @click="navigateToPage('Search')"/>
     <v-btn @click="navigateToPage('Settings')" icon>
       <v-icon x-large>mdi-settings</v-icon>
     </v-btn>

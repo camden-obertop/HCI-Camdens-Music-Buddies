@@ -1,7 +1,8 @@
 <template>
   <v-hover v-slot:default="{ hover }">
     <v-card
-      height="275px"
+      color="transparent"
+      height="260px"
       width="200px"
       :class="{ 'on-hover': hover }"
       elevation="0"
@@ -43,7 +44,7 @@
               </v-btn>
             </v-col>
             <v-col>
-              <v-menu offset-x>
+              <v-menu offset-x fixed>
                 <template v-slot:activator="{ on }">
                   <v-btn
                     v-if="!isPlaylist"
@@ -75,8 +76,16 @@
             </v-col>
           </v-row>
         </v-container>
+        <v-fade-transition>
+          <v-overlay
+            v-if="hover"
+            absolute
+            :z-index="-1"
+            color="black"
+          />
+        </v-fade-transition>
       </v-img>
-      <v-card-text class="ma-0 pa-0 text-center title">
+      <v-card-text style="color: #FFFFFF; font: 22px 'Poetsen One', normal !important;" class="ma-0 pa-0 text-center">
         <div v-if="!isPlaylist">
           {{ musicInfo.title }}
         </div>
@@ -84,8 +93,9 @@
           {{ musicInfo.title }}
         </v-btn>
       </v-card-text>
-      <v-card-text v-if="!isPlaylist" class="ml-5 pa-0 text-center subtitle-2"
-        >{{ musicInfo.artist }}
+      <v-card-text v-if="!isPlaylist" class="ml-5 pa-0 text-center subtitle-2" style="color: #D3D3D3; font:18px 'Poetsen One', normal !important;"
+      >
+        {{ musicInfo.artist }}
         <v-img
           style="display:inline-block; float:right; margin-right:25px"
           width="20px"
@@ -96,6 +106,8 @@
     </v-card>
   </v-hover>
 </template>
+
+<style scoped src="./music-square.css"/>
 
 <script>
   import { mapGetters, mapActions } from "vuex";
@@ -147,18 +159,3 @@ export default {
   })
 };
 </script>
-
-<style scoped>
-.v-img {
-  transition: opacity 0.2s ease-in-out;
-  opacity: 0.5;
-}
-
-.v-img:not(.on-hover) {
-  opacity: 1;
-}
-
-.show-btns {
-  color: rgba(255, 255, 255, 1) !important;
-}
-</style>

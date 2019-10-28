@@ -1,0 +1,48 @@
+import { Album } from '../entities';
+import { FIFTEEN_STEP, BODY_SNATCHERS, NUDE, ARPEGGI, ALL_I_NEED } from './song_data';
+import { FAUST_ARP, RECKONER, HOUSE_OF_CARDS, JIGSAW_FALLING_INTO_PLACE } from './song_data';
+import { VIDEO_TAPE, THE_DAILY_HEAVY, THE_EXPERIMENTER, FACE_STABBER } from './song_data';
+import { SNICKERSNEE, FU_XI, SCUTUM_AND_SCORPIUS, GHOLU, POISONED_STONES } from './song_data';
+import { SS_LUKERS_MOM, HEARTWORM, TOGETHER_TOMORROW, CAPTAIN_LOOSLEY } from './song_data';
+import { HENCHLOCK, NO_SURPRISES, LUCKY, THE_TOURIST } from './song_data';
+import { CRACKING, NINA, GHOSTRIDE, FALL_DOWN, MR, THE_LETTER } from './song_data';
+import { PART_III, AND_IT_NEVER_ENDS, FACES, JINX, ROBOT_STOP } from './song_data';
+import { BIG_FIG_WASP, GAMMA_KNIFE, PEOPLE_VULTURES, MR_BEAT } from './song_data';
+import { EVIL_DEATH_ROLL, INVISIBLE_FACE, WAH_WAH, ROAD_TRAIN } from './song_data';
+import { SUBTERRANEAN_HOMESICK_ALIEN, EXIT_MUSIC, LET_DOWN, KARMA_POLICE } from './song_data';
+import { FITTER_HAPPIER, ELECTIONEERING, CLIMBING_UP_THE_WALLS } from './song_data';
+import { ALLUDA_MAJAKA, STRESSIN, VEGEMITE, ITS_GOT_OLD, WORK_THIS_TIME } from './song_data';
+import { ABABCD, SLEEPWALKER, HOT_WAX, CRYING, PIPE_DREAM } from './song_data';
+import { HOMELESS_MAN_IN_ADDIDAS, ODDMENTS, AIRBAG, PARANOID_ANDROID } from './song_data';
+
+export const IN_RAINBOWS = new Album("In Rainbows", "Radiohead", "Spotify", "./assets/in-rainbows.jpg",
+	[FIFTEEN_STEP, BODY_SNATCHERS, NUDE, ARPEGGI, ALL_I_NEED, FAUST_ARP,
+	RECKONER, HOUSE_OF_CARDS, JIGSAW_FALLING_INTO_PLACE, VIDEO_TAPE]
+);
+export const FACE_STABBER_ALBUM = new Album("Face Stabber","Oh Sees", "Spotify", "./assets/face-stabber.jpg",
+	[THE_DAILY_HEAVY, THE_EXPERIMENTER, FACE_STABBER, SNICKERSNEE,
+	FU_XI, SCUTUM_AND_SCORPIUS, GHOLU, POISONED_STONES, SS_LUKERS_MOM,
+	HEARTWORM, TOGETHER_TOMORROW, CAPTAIN_LOOSLEY, HENCHLOCK]
+);
+export const JINX_ALBUM = new Album("Jinx","Crumb","Spotify", "./assets/jinx.png",
+	[CRACKING, NINA, GHOSTRIDE, FALL_DOWN, MR, THE_LETTER,
+	PART_III, AND_IT_NEVER_ENDS, FACES, JINX]
+);
+export const NONAGON_INFINITY = new Album("Nonagon Infinity","King Gizzard","Spotify" ,"./assets/nonagon-infinity.jpg",
+	[ROBOT_STOP, BIG_FIG_WASP, GAMMA_KNIFE, PEOPLE_VULTURES, MR_BEAT,
+	EVIL_DEATH_ROLL, INVISIBLE_FACE, WAH_WAH, ROAD_TRAIN]
+);
+export const ODDMENTS_ALBUM = new Album("Oddments","King Gizzard", "Spotify", "./assets/oddments.jpg",
+	[ALLUDA_MAJAKA, STRESSIN, VEGEMITE, ITS_GOT_OLD, WORK_THIS_TIME,
+	ABABCD, SLEEPWALKER, HOT_WAX, CRYING, PIPE_DREAM, 
+	HOMELESS_MAN_IN_ADDIDAS, ODDMENTS
+	]
+);
+export const OK_COMPUTER = new Album("OK Computer","Radiohead", "Spotify", "./assets/ok-computer.jpg",
+	[AIRBAG, PARANOID_ANDROID, SUBTERRANEAN_HOMESICK_ALIEN, EXIT_MUSIC,
+	LET_DOWN, KARMA_POLICE, FITTER_HAPPIER, ELECTIONEERING,
+	CLIMBING_UP_THE_WALLS, NO_SURPRISES, LUCKY, THE_TOURIST]
+);
+
+export default [IN_RAINBOWS, FACE_STABBER_ALBUM, JINX_ALBUM, NONAGON_INFINITY,
+		ODDMENTS_ALBUM, OK_COMPUTER];

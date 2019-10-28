@@ -2,9 +2,11 @@
 <template>
   <v-container>
     <template v-for="i in Math.ceil(items.length/maxRows)">
-      <v-row align="start" :key="i">
+      <v-row :key="i">
         <v-col v-for="item in items.slice((i-1)*columns, i*columns)" :key="item.toString()">
-          <slot name="cell" :item="item"/>
+          <div style="margin-left: 25%;">
+            <slot name="cell" :item="item"/>
+          </div>
         </v-col>
         <!-- These add empty columns so that we get our desired row width -->
         <v-col v-for="pad in columns - items.slice((i-1)*columns, i*columns).length" :key="pad">
