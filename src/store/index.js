@@ -187,10 +187,13 @@ const actions = {
 			// console.error('Unable to favorite the item.');
 		}
 	},
-	toggleInPlaylist: (state, getters, {playlist, addableItem}) => {
+	toggleInPlaylist: (state, {playlist, addableItem}) => {
 		if (addableItem instanceof Song) {
-			if (getters.playlists)
-			state.commit('addSongToPlaylist', {playlist, song: addableItem});
+			if (state.getters.isInPlaylist(playlist, addableItem)) {
+				state.commit('removeSongFromPlaylist', {playlist: playlist, song: addableItem});
+			} else {
+				state.commit('addSongToPlaylist', {playlist: playlist, song: addableItem});
+			}
 		} else if(addableItem instanceof Album) {
 			// TODO Implement this behavior
 		} else {
@@ -250,8 +253,8 @@ const getters = {
 			// console.error('Unable to check if the item is favorited.');
 		}
 	},
-	isInPlaylist: (state) => ({playlist, song}) => {
-		return song in state.playlists.find(playlist).songs;
+	isInPlaylist: (state) => (playlist, song) => {
+		return song in state.playlists.find(p => p == playlist).songs;
 	}
 };
 

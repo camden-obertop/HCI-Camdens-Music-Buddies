@@ -3,7 +3,7 @@
   <v-navigation-drawer v-model="drawerOpen" color="#1E2830" dark style="height:calc(100% - 64px); top: 64px; position: relative; overflow-y: scroll">
     <v-list style="height: 100%">
       <h3 style="text-align: center;"> {{ queue.title }} </h3>
-      <v-list-item 
+      <v-list-item
         v-for="(song, index) in queue.songs" 
         :class="[currentQueueSong == song ? 'selected-item ': 'deselected-item']"
         :key="index + 'song'" 
