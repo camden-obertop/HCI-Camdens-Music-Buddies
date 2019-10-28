@@ -11,7 +11,7 @@
       </v-tab>
     </v-tabs>
     <!-- TODO Make this look nicer and to be properly lined up -->
-    <v-autocomplete label="Search:" id="searchBar" />
+    <v-autocomplete label="Search:" id="searchBar" @click="navigateToPage('Search')"/>
     <v-btn @click="navigateToPage('Settings')" icon>
       <v-icon x-large>mdi-settings</v-icon>
     </v-btn>
@@ -37,7 +37,7 @@ export default {
       if (splitPath.length == 3) {
         return this.headers.indexOf("Playlists");
       }
-      return this.headers.indexOf(this.$route.path);
+      return this.headers.indexOf(this.$route.name);
     }
   }
 };
