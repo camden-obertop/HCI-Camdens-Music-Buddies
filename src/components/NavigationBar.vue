@@ -14,7 +14,7 @@
     <!-- TODO Make the results use dark mode -->
     <v-autocomplete label="Search:" :items="['Number 15']" id="searchBar" class="pt-4" @click="navigateToPage('Search')" dark />
     <v-btn @click="navigateToPage('Settings')" icon>
-      <v-icon x-large>mdi-settings</v-icon>
+      <v-icon x-large color=#D50059>mdi-settings</v-icon>
     </v-btn>
   </v-app-bar>
 </template>
