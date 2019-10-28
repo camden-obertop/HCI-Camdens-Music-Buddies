@@ -1,6 +1,6 @@
 <template>
 	<v-app-bar color="#11171C" dark app>
-    <v-app-bar-nav-icon />
+    <v-app-bar-nav-icon @click="hideHamburger()"/>
     <v-tabs :value="activeTab" dark slider-color="#D50059" background-color="transparent">
       <v-tab
         v-for="header in headers" 
@@ -29,6 +29,10 @@ export default {
   methods: {
     navigateToPage(pageName) {
       this.$store.dispatch("navigateToPage", pageName);
+    },
+    hideHamburger()
+    {
+      document.getElementsByClassName('gridQueue')[0].classList.toggle('hide-queue');
     }
   },
   computed: {
