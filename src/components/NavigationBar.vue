@@ -30,9 +30,11 @@ export default {
   },
   methods: {
     ...mapActions([
-      'navigateToPage',
-      'toggleDrawer'
-    ])
+      'navigateToPage'
+    ]),
+    toggleDrawer() {
+      this.$store.commit('toggleDrawer');
+    }
   },
   computed: {
     activeTab: function() {
