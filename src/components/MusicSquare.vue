@@ -66,6 +66,11 @@
                 </template>
                 <v-list>
                   <v-list-item
+                    @click="addToQueue(musicInfo)"
+                  >
+                    Add to Queue
+                  </v-list-item>
+                  <v-list-item
                     v-for="(item, index) in playlists"
                     :key="index"
                     @click="toggleInPlaylist({playlist: item, addableItem: musicInfo})"
@@ -113,7 +118,7 @@
 <style scoped src="./music-square.css"/>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 export default {
   props: {
     musicInfo: {
@@ -143,6 +148,9 @@ export default {
       "play",
       "toggleInPlaylist",
       "toggleFavorite"
+    ]),
+    ...mapMutations([
+      'addToQueue'
     ]),
     navigateToPage() {
       this.$router.push({
