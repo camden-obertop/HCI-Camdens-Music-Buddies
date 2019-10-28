@@ -35,7 +35,7 @@
                 <v-icon
                   :class="{ 'show-btns': hover }"
                   :color="transparent"
-                  @click="onPlay()"
+                  @click="play(musicInfo)"
                   size="65"
                 >
                   mdi-play
@@ -65,19 +65,20 @@
                     v-for="(item, index) in playlists"
                     :key="index"
                     @click="onAddPlaylist(item)"
-                    ><v-list-item-title>{{
-                      item.title
-                    }}</v-list-item-title></v-list-item
                   >
+                    <v-list-item-title>
+                      {{ item.title }}
+                    </v-list-item-title>
+                  </v-list-item>
                 </v-list>
               </v-menu>
             </v-col>
           </v-row>
         </v-container>
       </v-img>
-      <v-card-text class="ma-0 pa-0 text-center title">{{
-        musicInfo.title
-      }}</v-card-text>
+      <v-card-text class="ma-0 pa-0 text-center title">
+        {{ musicInfo.title }}
+      </v-card-text>
       <v-card-text v-if="!isPlaylist" class="ml-5 pa-0 text-center subtitle-2"
         >{{ musicInfo.artist }}
         <v-img
@@ -85,14 +86,14 @@
           width="20px"
           height="20px"
           :src="platformIconURL"
-        ></v-img>
+        />
       </v-card-text>
     </v-card>
   </v-hover>
 </template>
 
 <script>
-  import { mapGetters } from "vuex";
+  import { mapGetters, mapActions } from "vuex";
 export default {
   props: {
     musicInfo: {
@@ -116,6 +117,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'play'
+    ]),
     onAddFavorite() {
       this.starSelected = !this.starSelected;
       if (this.starSelected === true) {
@@ -123,12 +127,6 @@ export default {
       } else {
         console.log("Unfavorited.");
       }
-    },
-    onPlay() {
-      console.log("Played");
-    },
-    onAddPlaylist(playlist) {
-      console.log(`Added to playlist ${playlist.title}`);
     }
   },
   data: () => ({

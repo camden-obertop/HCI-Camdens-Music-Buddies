@@ -1,13 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Song from '../entities/song';
-import Album from '../entities/album';
-import Playlist from '../entities/playlist';
+import { Song, Album, Playlist } from '../entities';
 import router from '../router';
 
 Vue.use(Vuex);
 
-const DREAMLAND = new Song('Dreamland', 'Chills', 'Spotify', './assets/dreamland.jpg');
+const DREAMLAND = new Song('Dreamland', 'Chills', 'Spotify', './assets/dreamland.jpg', 'http://popplers5.bandcamp.com/download/track?enc=mp3-128&id=1269403107&stream=1');
 const RUN = new Song('Run', 'Awolnation', 'Youtube', './assets/awolnation.jpg');
 
 const IN_RAINBOW = new Album("In Rainbows", "Radiohead", "Spotify", "./assets/in-rainbows.jpg");
@@ -33,7 +31,10 @@ const state = {
 	queue: {
 		title: 'Queue',
 		songs: [DREAMLAND, RUN]
-	}
+	},
+	// This refers to the index of the current song in the queue that
+	// is being played.
+	queueIndex: 0
 };
 
 const mutations = {
@@ -48,15 +49,86 @@ const mutations = {
 	},
 	removeSongFromQueue: (state, song) => {
 		state.queue.songs = state.queue.songs.filter(s => s != song);
+	},
+	clearQueue: (state) => {
+		state.queue.songs = [];
+		state.queue.title = 'Queue';
+		state.queueIndex = 0;
+	},
+	setQueueTitle: (state, title) => {
+		state.queue.title = title;
+	},
+	setQueueIndex: (state, queueIndex) => {
+		state.queueIndex = queueIndex;
 	}
 };
 
 const actions = {
-	playSong: (state, song) => {
-		// TODO Add song playing here.
-		song
-		// eslint-disable-next-line no-console
-		console.log(`Attempting to play the song ${song.title}.`);
+	// This will first determine if the item is a playlist, album, or
+	// song and then properly react
+	play: (state, playableItem) => {
+		// pause the song that was previously being played
+		if (state.getters.currentQueueSong) {
+			state.getters.currentQueueSong.pause();
+		} else {
+			console.log('The current song is not defined so we can\'t pause it.');
+		}
+
+		// clear the queue and add this song to the queue
+		state.commit('clearQueue');
+		if (playableItem instanceof Song) {
+			state.commit('addSongToQueue', playableItem);
+		} else if (playableItem instanceof Playlist) {
+			// TODO Maybe implement a bulk add mutation
+			for (const song of playableItem.songs) {
+				state.commit('addSongToQueue', song);
+			}
+			state.commit('setQueueTitle', playableItem.title);
+		} else if (playableItem instanceof Album) {
+			// TODO When we add the album's songs to the object, implement
+			// functionality to commit all of their songs to the queue
+			state.commit('setQueueTitle', playableItem.title);
+		} else {
+			console.error('Unable to figure out how to handle adding the object to the playlist.');
+		}
+		state.getters.currentQueueSong.play();
+	},
+	togglePlaying: (state) => {
+		console.log(`Toggling playing status to:`);
+		if (state.getters.currentQueueSong) {
+			if (state.getters.currentQueueSong.isPlaying()) {
+				state.getters.currentQueueSong.pause();
+				console.log(`Pause.`);
+			} else {
+				state.getters.currentQueueSong.play();
+				console.log(`Play.`);
+			}
+		} else {
+			console.log(`No current song.`);
+		}
+	},
+	toggleMute: (state) => {
+		if (state.getters.currentQueueSong) {
+			if (state.getters.currentQueueSong.isMuted()) {
+			state.getters.currentQueueSong.unmute();
+			} else {
+				state.getters.currentQueueSong.mute();
+			}
+		}
+	},
+	skipQueueBackwards: (state) => {
+		state.dispatch('setQueueIndex', state.getters.queueIndex - 1);
+		console.log(`Moving the queue backwards.`);
+	},
+	skipQueueForwards: (state) => {
+		state.dispatch('setQueueIndex', state.getters.queueIndex + 1);
+		console.log(`Moving the queue forwards.`);
+	},
+	// This takes the requested index and performs some operations on it
+	// to make it a valid queue index.
+	setQueueIndex: (state, index) => {
+		console.log((index + state.getters.queueLength) % state.getters.queueLength);
+		state.commit('setQueueIndex', (index + state.getters.queueLength) % state.getters.queueLength);
 	},
 	navigateToPage: (state, pageName) => {
 		if (router.history.current.name !== pageName) {
@@ -77,6 +149,21 @@ const getters = {
 	},
 	queue: (state) => {
 		return state.queue;
+	},
+	currentQueueSong: (state) => {
+		const currentSong = state.queue.songs[state.queueIndex];
+		const blankSong = new Song('', '', '', '', '');
+		if (currentSong) {
+			return currentSong;
+		} else {
+			return blankSong;
+		}
+	},
+	queueLength: (state) => {
+		return state.queue.songs.length;
+	},
+	queueIndex: (state) => {
+		return state.queueIndex;
 	}
 };
 

@@ -1,12 +1,7 @@
-export default class Song {
-	constructor(title, artist, platform, artURL, audioURL) {
-		this.title = title;
-		this.artist = artist;
-		this.platform = platform;
-		this.artURL = artURL;
-		this.audioURL = audioURL;
-
-		this.audio = new Audio(this.audioURL);
+export default class QueueSong {
+	constructor(song) {
+		this.song = song;
+		this.audio = new Audio(song.audioURL);
 	}
 
 	get duration() {
@@ -43,9 +38,5 @@ export default class Song {
 
 	isMuted() {
 		return this.audio.muted;
-	}
-	
-	toString() {
-		return `${this.title} ${this.artist} ${this.platform} ${this.artURL} ${this.audioURL}`;
 	}
 }
