@@ -11,7 +11,7 @@ Camden Music Buddies is Team Kansas and Braccia's project for Human Computer Int
 
 ## Project setup
 1. Install [yarn](https://yarnpkg.com/lang/en/docs/cli/install/)
-2. Navigate to "CMB KS and Braccia/HCI-Camdens-Music-Buddies" in a CLI
+2. Navigate to "HCI-Camdens-Music-Buddies" in a CLI
 3. Run the following commands:
 ```
 yarn install
