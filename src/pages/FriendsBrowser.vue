@@ -62,6 +62,12 @@ export default {
           name: "Friend twooo",
           songAndArtist: "Jesus is king - Kanye West",
           timeString: "18 Hours Ago"
+        },
+                {
+          url: "https://picsum.photos/200",
+          name: "Friend tres",
+          songAndArtist: "Jesus is king - Kanye West",
+          timeString: "18 Hours Ago"
         }
       ]
     };
