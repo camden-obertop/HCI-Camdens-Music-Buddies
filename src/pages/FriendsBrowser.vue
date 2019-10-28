@@ -34,6 +34,13 @@ td{
 th{
   width: 25%;
 }
+tbody tr:nth-child(odd){
+  background-color:lightgray;
+}
+table{
+    border-collapse: collapse;
+
+}
 </style>
 <script>
 export default {
