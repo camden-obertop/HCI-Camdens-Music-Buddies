@@ -3,7 +3,7 @@ import Vuex from "vuex";
 import { Song, Album, Playlist } from '../entities';
 import { SONGS, DREAMLAND, RUN } from '../data/song_data';
 import { NUMBER15, NUMBER15_YOUTUBE, HARD_IN_THE_PAINT, SWAP_MEET, FRIDAY_NIGHT, SIDELINED, NUMBER15_LYRICS} from '../data/song_data';
-import ALBUMS from '../data/album_data';
+import { ALBUMS, ODDMENTS_ALBUM, NONAGON_INFINITY } from '../data/album_data';
 import router from "../router";
 
 Vue.use(Vuex);
@@ -11,7 +11,9 @@ Vue.use(Vuex);
 const state = {
 	searchResults: [NUMBER15, NUMBER15_YOUTUBE, HARD_IN_THE_PAINT, SWAP_MEET, FRIDAY_NIGHT, SIDELINED, NUMBER15_LYRICS, DREAMLAND],
 	songs: SONGS,
+	favoriteSongs: new Set([DREAMLAND, NUMBER15_YOUTUBE]),
 	albums: ALBUMS,
+	favoriteAlbums: new Set([ODDMENTS_ALBUM, NONAGON_INFINITY]),
 	playlists: [
 		new Playlist('Cool Songs', [DREAMLAND, RUN], './assets/foot-lettuce.png', 1),
 		new Playlist('Camden SONGSS', [DREAMLAND, NUMBER15], './assets/foot-lettuce.png', 2),
@@ -51,6 +53,18 @@ const mutations = {
 	},
 	setQueueIndex: (state, queueIndex) => {
 		state.queueIndex = queueIndex;
+	},
+	addToFavoriteSongs: (state, song) => {
+		state.favoriteSongs.add(song);
+	},
+	removeFromFavoriteSongs: (state, song) => {
+		state.favoriteSongs.delete(song);
+	},
+	addToFavoriteAlbums: (state, album) => {
+		state.favoriteAlbum.add(album);
+	},
+	removeFromFavoriteAlbums: (state, album) => {
+		state.favoriteAlbum.deletex(album);
 	}
 };
 
@@ -137,6 +151,32 @@ const actions = {
 		if (router.history.current.name !== pageName) {
 			router.push({ name: pageName });
 		}
+	},
+	toggleFavorite: (state, favoritableItem) => {
+		if (state.getters.isFavorited(favoritableItem)) {
+			state.dispatch('unfavorite', favoritableItem);
+		} else {
+			state.dispatch('favorite', favoritableItem);
+		}
+	},
+	favorite: (state, favoritableItem) => {
+		if (favoritableItem instanceof Song) {
+			state.commit('addToFavoriteSongs', favoritableItem);
+		} else if(favoritableItem instanceof Album) {
+			state.commit('addToFavoriteAlbums', favoritableItem);
+		} else {
+			console.log('Unable to favorite the item.');
+			console.log(favoritableItem);
+		}
+	},
+	unfavorite: (state, favoritableItem) => {
+		if (favoritableItem instanceof Song) {
+			state.commit('removeFromFavoriteSongs', favoritableItem);
+		} else if(favoritableItem instanceof Album) {
+			state.commit('removeFromFavoriteAlbums', favoritableItem);
+		} else {
+			console.log('Unable to favorite the item.');
+		}
 	}
 };
 
@@ -156,11 +196,7 @@ const getters = {
 	queue: (state) => {
 		return state.queue;
 	},
-	// eslint-disable-next-line
 	playlist: (state) => (playlistId) => {
-		console.log(state.playlists.find(
-      playlist => playlist.ID === parseInt(playlistId)
-    ).songs);
 		return state.playlists.find(
       playlist => playlist.ID === parseInt(playlistId)
     );
@@ -179,6 +215,21 @@ const getters = {
 	},
 	queueIndex: (state) => {
 		return state.queueIndex;
+	},
+	favoriteSongs: (state) => {
+		return Array.from(state.favoriteSongs);
+	},
+	favoriteAlbums: (state) => {
+		return Array.from(state.favoriteAlbums);
+	},
+	isFavorited: (state) => (favoritableItem) => {
+		if (favoritableItem instanceof Song) {
+			return state.favoriteSongs.has(favoritableItem);
+		} else if(favoritableItem instanceof Album) {
+			return state.favoriteAlbums.has(favoritableItem);
+		} else {
+			console.log('Unable to check if the item is favorited.');
+		}
 	}
 };
 
