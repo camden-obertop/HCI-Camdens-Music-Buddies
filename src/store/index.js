@@ -1,19 +1,18 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import { Song, Album, Playlist } from '../entities';
-import { SONGS, DREAMLAND, RUN } from '../data/song_data';
-import { NUMBER15, NUMBER15_YOUTUBE, HARD_IN_THE_PAINT, SWAP_MEET, FRIDAY_NIGHT, SIDELINED, NUMBER15_LYRICS} from '../data/song_data';
+import Vue from "vue"; import Vuex from "vuex"; import { Song, Album, Playlist
+} from '../entities'; import { SONGS, DREAMLAND, RUN } from
+'../data/song_data'; import { NUMBER15, NUMBER15_YOUTUBE, HARD_IN_THE_PAINT,
+SWAP_MEET, FRIDAY_NIGHT, SIDELINED, NUMBER15_LYRICS} from '../data/song_data';
 import { ALBUMS, ODDMENTS_ALBUM, NONAGON_INFINITY } from '../data/album_data';
 import router from "../router";
 
 Vue.use(Vuex);
 
 const state = {
-	searchResults: [NUMBER15, NUMBER15_YOUTUBE, HARD_IN_THE_PAINT, SWAP_MEET, FRIDAY_NIGHT, SIDELINED, NUMBER15_LYRICS, DREAMLAND],
+	searchResults: new Array(NUMBER15, NUMBER15_YOUTUBE, HARD_IN_THE_PAINT, SWAP_MEET, FRIDAY_NIGHT, SIDELINED, NUMBER15_LYRICS, DREAMLAND),
 	songs: SONGS,
-	favoriteSongs: new Set([DREAMLAND, NUMBER15_YOUTUBE]),
+	favoriteSongs: new Array(DREAMLAND, NUMBER15_YOUTUBE),
 	albums: ALBUMS,
-	favoriteAlbums: new Set([ODDMENTS_ALBUM, NONAGON_INFINITY]),
+	favoriteAlbums: new Array(ODDMENTS_ALBUM, NONAGON_INFINITY),
 	playlists: [
 		new Playlist('Cool Songs', [DREAMLAND, RUN], './assets/foot-lettuce.png', 1),
 		new Playlist('Camden SONGSS', [DREAMLAND, NUMBER15], './assets/foot-lettuce.png', 2),
@@ -28,21 +27,15 @@ const state = {
 };
 
 const mutations = {
-	addSongToPlaylist: (state, playlist, song) => {
-		state.playlists.find(playlist).addSong(song);
-	},
-	removeSongFromPlayList: (state, playlist, song) => {
-		state.playlists.find(playlist).removeSong(song);
-	},
 	addSongToQueue: (state, song) => {
 		state.queue.songs.push(song);
 	},
 	addSongsToQueue: (state, songs) => {
 		state.queue.songs.push(...songs);
 	},
-	removeSongFromQueue: (state, song) => {
-		state.queue.songs = state.queue.songs.filter(s => s != song);
-	},
+	// removeSongFromQueue: (state, song) => {
+	// 	state.queue.songs = state.queue.songs.filter(s => s != song);
+	// },
 	clearQueue: (state) => {
 		state.queue.songs = [];
 		state.queue.title = 'Queue';
@@ -55,16 +48,29 @@ const mutations = {
 		state.queueIndex = queueIndex;
 	},
 	addToFavoriteSongs: (state, song) => {
-		state.favoriteSongs.add(song);
+		state.favoriteSongs.push(song);
 	},
 	removeFromFavoriteSongs: (state, song) => {
-		state.favoriteSongs.delete(song);
+		state.favoriteSongs.splice(state.favoriteSongs.indexOf(song), 1);
 	},
 	addToFavoriteAlbums: (state, album) => {
-		state.favoriteAlbum.add(album);
+		state.favoriteAlbums.push(album);
 	},
 	removeFromFavoriteAlbums: (state, album) => {
-		state.favoriteAlbum.deletex(album);
+		state.favoriteAlbums.splice(state.favoriteAlbums.indexOf(album), 1);
+	},
+	// TODO These might not work, because they aren't using instance methods
+	addSongToPlaylist: (state, {playlist, song}) => {
+		let playlists = state.playlists;
+		playlists.find(p => p === playlist).songs.push(song);
+		Vue.set(state, 'playlists', playlists);
+	},
+	removeSongFromPlaylist: (state, {playlist, song}) => {
+		let playlists = state.playlists;
+		// eslint-disable-next-line no-unused-vars
+		let selectedPlaylist = playlists.find(playlist);
+		selectedPlaylist = selectedPlaylist.songs.filter(s => s !== song);
+		Vue.set(state, 'playlists', playlists);
 	}
 };
 
@@ -76,7 +82,7 @@ const actions = {
 		if (state.getters.currentQueueSong) {
 			state.getters.currentQueueSong.pause();
 		} else {
-			console.log('The current song is not defined so we can\'t pause it.');
+			// console.error('The current song is not defined so we can\'t pause it.');
 		}
 
 		// clear the queue and add this song to the queue
@@ -90,7 +96,7 @@ const actions = {
 			state.commit('addSongsToQueue', playableItem.songs);
 			state.commit('setQueueTitle', playableItem.title);
 		} else {
-			console.error('Unable to figure out how to handle adding the object to the playlist.');
+			// console.error('Unable to figure out how to handle adding the object to the playlist.');
 		}
 		state.getters.currentQueueSong.play();
 	},
@@ -165,8 +171,7 @@ const actions = {
 		} else if(favoritableItem instanceof Album) {
 			state.commit('addToFavoriteAlbums', favoritableItem);
 		} else {
-			console.log('Unable to favorite the item.');
-			console.log(favoritableItem);
+			// console.error('Unable to favorite the item.');
 		}
 	},
 	unfavorite: (state, favoritableItem) => {
@@ -175,7 +180,17 @@ const actions = {
 		} else if(favoritableItem instanceof Album) {
 			state.commit('removeFromFavoriteAlbums', favoritableItem);
 		} else {
-			console.log('Unable to favorite the item.');
+			// console.error('Unable to favorite the item.');
+		}
+	},
+	toggleInPlaylist: (state, getters, {playlist, addableItem}) => {
+		if (addableItem instanceof Song) {
+			if (getters.playlists)
+			state.commit('addSongToPlaylist', {playlist, song: addableItem});
+		} else if(addableItem instanceof Album) {
+			// TODO Implement this behavior
+		} else {
+			console.log('Unable to toggle this item being in a playlist.');
 		}
 	}
 };
@@ -217,19 +232,22 @@ const getters = {
 		return state.queueIndex;
 	},
 	favoriteSongs: (state) => {
-		return Array.from(state.favoriteSongs);
+		return state.favoriteSongs;
 	},
 	favoriteAlbums: (state) => {
-		return Array.from(state.favoriteAlbums);
+		return state.favoriteAlbums;
 	},
 	isFavorited: (state) => (favoritableItem) => {
 		if (favoritableItem instanceof Song) {
-			return state.favoriteSongs.has(favoritableItem);
+			return state.favoriteSongs.includes(favoritableItem);
 		} else if(favoritableItem instanceof Album) {
-			return state.favoriteAlbums.has(favoritableItem);
+			return state.favoriteAlbums.includes(favoritableItem);
 		} else {
-			console.log('Unable to check if the item is favorited.');
+			// console.error('Unable to check if the item is favorited.');
 		}
+	},
+	isInPlaylist: (state) => ({playlist, song}) => {
+		return song in state.playlists.find(playlist).songs;
 	}
 };
 

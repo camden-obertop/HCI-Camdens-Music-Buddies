@@ -3,7 +3,7 @@
   <v-data-table :headers="headers" :items="playlist(this.$route.params.playlistID).songs">
     <template v-slot:body="{ items }">
       <tbody>
-        <tr @click="play(item)" v-for="(item, index) in items" :key="item.toString() + index">
+        <tr @click="play(item)" v-for="(item, index) in items" :key="'playlist' + index">
           <td>{{ item.title }}</td>
           <td>{{ item.artist }}</td>
           <td>{{ item.album }}</td>
