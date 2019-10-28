@@ -32,3 +32,7 @@ body, div { color: #FFFFFF; font: 18px "Poetsen One", normal !important; font-we
 .gridPlayer .v-icon{
   color:#D50059 !important;
 }
+.gridPlayer{
+  border-style: none !important;
+  background-color:#11171C !important;
+}

@@ -1,8 +1,8 @@
 <template>
   <v-row>
-    <v-col>
-      <h1>{{ currentQueueSong.title }}</h1>
-      <h2>{{ currentQueueSong.artist }}</h2>
+    <v-col class="pa-12">
+      <h2>{{ currentQueueSong.title }}</h2>
+      <h3>{{ currentQueueSong.artist }}</h3>
       <!-- TODO Add the art image here -->
     </v-col>
     <!-- TODO properly center these buttons later so we don't need the cols -->
@@ -75,7 +75,7 @@
       </v-row>
       <v-row>
         <!-- TODO Reimplement the value to bind the seeking -->
-        <v-slider thumb-label="always" :max="100" :min="0" />
+        <v-slider color="#D50059" track-color="#D50059" thumb-label="always" :max="100" :min="0" />
       </v-row>
     </v-col>
     <v-col />
