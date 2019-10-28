@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import {mapActions } from 'vuex';
 export default {
   name: "navigationBar",
   data: function() {
@@ -28,12 +29,10 @@ export default {
     };
   },
   methods: {
-    navigateToPage(pageName) {
-      this.$store.dispatch("navigateToPage", pageName);
-    },
-    toggleDrawer() {
-      this.$store.commit('toggleDrawer');
-    }
+    ...mapActions([
+      'navigateToPage',
+      'toggleDrawer'
+    ])
   },
   computed: {
     activeTab: function() {
