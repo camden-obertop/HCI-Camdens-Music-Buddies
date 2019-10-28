@@ -22,15 +22,21 @@
           </v-hover>
         </v-col>
         <v-col>
+                        <v-tooltip top>
+                <template v-slot:activator="{ on }">
           <v-hover v-slot:default="playButtonHover">
             <v-icon
               :class="{ 'show-btns': playButtonHover }"
               @click="togglePlaying()"
               size="65"
+              v-on="on"
             >
               {{currentQueueSong.isPlaying() ?'mdi-pause':'mdi-play'}}
             </v-icon>
           </v-hover>
+                </template>
+                <span> {{currentQueueSong.isPlaying() ?"Pause":"Play"}}</span>
+              </v-tooltip>
         </v-col>
         <v-col>
           <v-hover v-slot:default="skipFowardsButtonHover">
