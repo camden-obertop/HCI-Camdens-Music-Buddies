@@ -1,14 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Layout from "../components/Layout";
-import AlbumsBrowser from "../pages/AlbumsBrowser";
-import FriendsBrowser from "../pages/FriendsBrowser";
-import Home from "../pages/Home";
-import PlayistsBrowser from "../pages/PlaylistsBrowser";
-import SearchResults from "../pages/SearchResults";
-import SongsBrowser from "../pages/SongsBrowser";
-import PlaylistBrowser from "../pages/PlaylistBrowser";
-import SettingsBrowser from "../pages/SettingsBrowser";
+import { AlbumsBrowser, FriendsBrowser, Home, SearchResults } from '../pages';
+import { PlaylistBrowser, PlaylistsBrowser, SongsBrowser, SettingsBrowser } from '../pages';
 
 Vue.use(VueRouter);
 
@@ -30,7 +24,7 @@ const routes = [
       {
         path: "/playlists",
         name: "Playlists",
-        component: PlayistsBrowser
+        component: PlaylistsBrowser
       },
       {
         path: "/playlists/:playlistID",

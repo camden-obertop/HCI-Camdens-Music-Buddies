@@ -7,7 +7,7 @@
         style="background-color: #D50059; margin: 7px 0px" 
         v-for="(song, index) in queue.songs" 
         :key="index + 'song'" 
-        @click="play(song)"
+        @click="setQueueIndex(index)"
         selectable
       >
         {{ song.title }} - {{ song.artist }}
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'play'
+      'setQueueIndex'
     ])
   },
   computed: {

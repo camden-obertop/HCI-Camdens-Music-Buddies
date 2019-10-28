@@ -8,15 +8,13 @@ import router from "../router";
 
 Vue.use(Vuex);
 
-console.log(SONGS);
-
 const state = {
 	searchResults: [NUMBER15, NUMBER15_YOUTUBE, HARD_IN_THE_PAINT, SWAP_MEET, FRIDAY_NIGHT, SIDELINED, NUMBER15_LYRICS, DREAMLAND],
 	songs: SONGS,
 	albums: ALBUMS,
 	playlists: [
 		new Playlist('Cool Songs', [DREAMLAND, RUN], './assets/foot-lettuce.png', 1),
-		new Playlist('Cool Songs', [DREAMLAND, RUN], './assets/foot-lettuce.png', 2),
+		new Playlist('Camden SONGSS', [DREAMLAND, NUMBER15], './assets/foot-lettuce.png', 2),
 	],
 	queue: {
 		title: 'Queue',
@@ -36,6 +34,9 @@ const mutations = {
 	},
 	addSongToQueue: (state, song) => {
 		state.queue.songs.push(song);
+	},
+	addSongsToQueue: (state, songs) => {
+		state.queue.songs.push(...songs);
 	},
 	removeSongFromQueue: (state, song) => {
 		state.queue.songs = state.queue.songs.filter(s => s != song);
@@ -69,14 +70,10 @@ const actions = {
 		if (playableItem instanceof Song) {
 			state.commit('addSongToQueue', playableItem);
 		} else if (playableItem instanceof Playlist) {
-			// TODO Maybe implement a bulk add mutation
-			for (const song of playableItem.songs) {
-				state.commit('addSongToQueue', song);
-			}
+			state.commit('addSongsToQueue', playableItem.songs);
 			state.commit('setQueueTitle', playableItem.title);
 		} else if (playableItem instanceof Album) {
-			// TODO When we add the album's songs to the object, implement
-			// functionality to commit all of their songs to the queue
+			state.commit('addSongsToQueue', playableItem.songs);
 			state.commit('setQueueTitle', playableItem.title);
 		} else {
 			console.error('Unable to figure out how to handle adding the object to the playlist.');
@@ -84,27 +81,34 @@ const actions = {
 		state.getters.currentQueueSong.play();
 	},
 	togglePlaying: (state) => {
-		console.log(`Toggling playing status to:`);
-		if (state.getters.currentQueueSong) {
-			if (state.getters.currentQueueSong.isPlaying()) {
-				state.getters.currentQueueSong.pause();
-				console.log(`Pause.`);
-			} else {
-				state.getters.currentQueueSong.play();
-				console.log(`Play.`);
-			}
+		if (state.getters.currentQueueSong.isPlaying()) {
+			state.dispatch('pauseCurrentSong');
 		} else {
-			console.log(`No current song.`);
+			state.dispatch('playCurrentSong');
 		}
 	},
 	toggleMute: (state) => {
-		if (state.getters.currentQueueSong) {
-			if (state.getters.currentQueueSong.isMuted()) {
-			state.getters.currentQueueSong.unmute();
-			} else {
-				state.getters.currentQueueSong.mute();
-			}
+		if (state.getters.currentQueueSong.isMuted()) {
+			state.dispatch('unmuteCurrentSong');
+		} else {
+			state.dispatch('muteCurrentSong');
 		}
+	},
+	muteCurrentSong: (state) => {
+		console.log('Mute.');
+		state.getters.currentQueueSong.mute();
+	},
+	unmuteCurrentSong: (state) => {
+		console.log('UnMute.');
+		state.getters.currentQueueSong.unmute();
+	},
+	playCurrentSong: (state) => {
+		console.log(`Play.`);
+		state.getters.currentQueueSong.play();
+	},
+	pauseCurrentSong: (state) => {
+		console.log(`Pause.`);
+		state.getters.currentQueueSong.pause();
 	},
 	skipQueueBackwards: (state) => {
 		state.dispatch('setQueueIndex', state.getters.queueIndex - 1);
@@ -117,8 +121,14 @@ const actions = {
 	// This takes the requested index and performs some operations on it
 	// to make it a valid queue index.
 	setQueueIndex: (state, index) => {
-		console.log((index + state.getters.queueLength) % state.getters.queueLength);
-		state.commit('setQueueIndex', (index + state.getters.queueLength) % state.getters.queueLength);
+		const newQueueIndex = (index + state.getters.queueLength) % state.getters.queueLength;
+		if (newQueueIndex !== state.getters.queueIndex) {
+
+			state.dispatch('pauseCurrentSong');
+			state.commit('setQueueIndex', newQueueIndex);	
+		}
+		// It should always play the current song when a event tries to move, even if it's the same place
+		state.dispatch('playCurrentSong');
 	},
 	navigateToPage: (state, pageName) => {
 		if (router.history.current.name !== pageName) {
