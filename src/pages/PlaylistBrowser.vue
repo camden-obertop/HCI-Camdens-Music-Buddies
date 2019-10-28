@@ -1,39 +1,35 @@
 <template>
-  <v-data-table :headers="headers" :items="songs">
-      <template v-slot:body="{ items }">
-          <tbody>
-            <tr v-for="(item, index) in items" :key="index">
-                <td><v-btn icon @click="playSong(item)"><v-icon>mdi-play</v-icon></v-btn></td>
-                <td>{{item.title}}</td>
-                <td>{{item.artist}}</td>
-                <td>{{item.album}}</td>
-                <td>{{item.platform}}</td>
-            </tr>
-          </tbody>
-      </template>
+  <!-- TODO Change play button for playing song to playing song from clicking on row -->
+  <v-data-table :headers="headers" :items="playlist(this.$route.params.playlistID).songs">
+    <template v-slot:body="{ items }">
+      <tbody>
+        <tr @click="play(item)" v-for="(item, index) in items" :key="item.toString() + index">
+          <td>{{ item.title }}</td>
+          <td>{{ item.artist }}</td>
+          <td>{{ item.album }}</td>
+          <td>{{ item.platform }}</td>
+        </tr>
+      </tbody>
+    </template>
   </v-data-table>
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex';
 export default {
   name: "playlist",
   computed: {
-    songs: function() {
-      return Array.from(
-        this.$store.state.playlists.filter(
-          playlist => playlist.ID === parseInt(this.$route.params.playlistID)
-        )[0].songs
-      );
-    }
+    ...mapGetters([
+      'playlist'
+    ])
   },
   methods: {
-      playSong(item) {
-          console.log(item.title)
-      }
+    ...mapActions([
+      'play'
+    ])
   },
   data: () => ({
     headers: [
-      { text: "Action", value: "action" },
       { text: "Song", value: "title" },
       { text: "Artist", value: "artist" },
       { text: "Album", value: "album" },
