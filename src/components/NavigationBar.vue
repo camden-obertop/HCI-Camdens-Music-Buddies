@@ -11,7 +11,8 @@
       </v-tab>
     </v-tabs>
     <!-- TODO Make this look nicer and to be properly lined up -->
-    <v-autocomplete label="Search:" :items="['Number 15']" id="searchBar" class="pt-4" @click="navigateToPage('Search')"/>
+    <!-- TODO Make the results use dark mode -->
+    <v-autocomplete label="Search:" :items="['Number 15']" id="searchBar" class="pt-4" @click="navigateToPage('Search')" dark />
     <v-btn @click="navigateToPage('Settings')" icon>
       <v-icon x-large>mdi-settings</v-icon>
     </v-btn>

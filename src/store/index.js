@@ -94,6 +94,9 @@ const actions = {
 			state.dispatch('muteCurrentSong');
 		}
 	},
+	restartQueueSong: (state) => {
+		state.getters.currentQueueSong.restart();
+	},
 	muteCurrentSong: (state) => {
 		console.log('Mute.');
 		state.getters.currentQueueSong.mute();

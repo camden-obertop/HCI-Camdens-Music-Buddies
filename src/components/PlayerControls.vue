@@ -9,7 +9,23 @@
     <v-col>
       <v-row>
         <v-col />
-        <v-col />
+        <v-col>
+          <v-tooltip top>
+            <template v-slot:activator="{ on }">
+              <v-hover v-slot:default="restartButtonHover">
+                <v-icon
+                  :class="{ 'show-btns': restartButtonHover }"
+                  @click="restartQueueSong()"
+                  size="65"
+                  v-on="on"
+                >
+                  {{ 'mdi-restart' }}
+                </v-icon>
+              </v-hover>
+            </template>
+            <span> Restart </span>
+          </v-tooltip>
+        </v-col>
         <v-col>
           <v-tooltip top>
             <template v-slot:activator="{ on }">
@@ -19,7 +35,9 @@
                   @click="skipQueueBackwards()"
                   size="65"
                   v-on="on"
-                >{{ 'mdi-skip-backward' }}</v-icon>
+                >
+                  {{ 'mdi-skip-backward' }}
+                </v-icon>
               </v-hover>
             </template>
             <span>Skip Backwards</span>
@@ -97,7 +115,8 @@ export default {
       "togglePlaying",
       "toggleMute",
       "skipQueueBackwards",
-      "skipQueueForwards"
+      "skipQueueForwards",
+      "restartQueueSong"
     ])
   }
 };
