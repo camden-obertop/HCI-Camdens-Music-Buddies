@@ -41,6 +41,9 @@ table{
     border-collapse: collapse;
 
 }
+thead{
+  border-bottom: gray 1px solid;
+}
 </style>
 <script>
 export default {
