@@ -5,13 +5,7 @@
     <v-content class="gridContent">
       <router-view></router-view>
     </v-content>
-<<<<<<< HEAD
-    <div class="gridPlayer" style="background-color:#11171C;">
-      Player
-    </div>
-=======
     <player-controls class="gridPlayer" style="border-style: solid;" />
->>>>>>> 055440cb3dd02f0a65cab3c20baa18fb35ddc8b0
   </div>
 </template>
 

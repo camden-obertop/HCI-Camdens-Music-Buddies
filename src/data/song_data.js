@@ -82,6 +82,14 @@ export const NO_SURPRISES = new Song('No Surprises', 'Radiohead', 'Spotify', './
 export const LUCKY = new Song('Lucky', 'Radiohead', 'Spotify', './assets/ok-computer.jpg', 'OK Computer');
 export const THE_TOURIST = new Song('The Tourist', 'Radiohead', 'Spotify', './assets/ok-computer.jpg', 'OK Computer');
 
+/* Search Results Songs */
+export const NUMBER15_YOUTUBE = new Song('Number 15', 'Chills', 'Youtube', './assets/chills-album-cover.jpeg', '', './assets/Music/Number 15.mp3');
+export const HARD_IN_THE_PAINT = new Song('Hard in the Paint', 'Numero 15', 'Spotify', './assets/hard-in-the-paint.jpg', '', '');
+export const SWAP_MEET = new Song('Swap Meet', 'Chills', 'Youtube', './assets/chills-album-cover.jpeg', '', '');
+export const FRIDAY_NIGHT = new Song('Friday Night', 'Chills', 'Youtube', './assets/a-friday-night.jpg', '', '');
+export const SIDELINED = new Song('Sidelined', 'Chills', 'Youtube', './assets/sidelined.jpg', '', '');
+export const NUMBER15_LYRICS = new Song('Number 15 Lyrics', 'Chills', 'Youtube', './assets/chills-album-cover.jpeg', '', './assets/Music/Number 15.mp3');
+
 export const SONGS = [
 	DREAMLAND,
 	NUMBER15,
