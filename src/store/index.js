@@ -51,8 +51,12 @@ const mutations = {
 		state.queue.songs = state.queue.songs.filter(s => s != song);
 	},
 	clearQueue: (state) => {
-		state.queue = [];
+		state.queue.songs = [];
+		state.queue.title = 'Queue';
 		state.queueIndex = 0;
+	},
+	setQueueTitle: (state, title) => {
+		state.queue.title = title;
 	},
 	setQueueIndex: (state, queueIndex) => {
 		state.queueIndex = queueIndex;
@@ -60,15 +64,33 @@ const mutations = {
 };
 
 const actions = {
-	playSong: (state, song) => {
+	// This will first determine if the item is a playlist, album, or
+	// song and then properly react
+	play: (state, playableItem) => {
 		// pause the song that was previously being played
-		state.getters.currentSong.pause();
+		if (state.getters.currentQueueSong) {
+			state.getters.currentQueueSong.pause();
+		} else {
+			console.log('The current song is not defined so we can\'t pause it.');
+		}
 
 		// clear the queue and add this song to the queue
 		state.commit('clearQueue');
-		state.commit('addSongToQueue', song);
-
-		// play our newly added song
+		if (playableItem instanceof Song) {
+			state.commit('addSongToQueue', playableItem);
+		} else if (playableItem instanceof Playlist) {
+			// TODO Maybe implement a bulk add mutation
+			for (const song of playableItem.songs) {
+				state.commit('addSongToQueue', song);
+			}
+			state.commit('setQueueTitle', playableItem.title);
+		} else if (playableItem instanceof Album) {
+			// TODO When we add the album's songs to the object, implement
+			// functionality to commit all of their songs to the queue
+			state.commit('setQueueTitle', playableItem.title);
+		} else {
+			console.error('Unable to figure out how to handle adding the object to the playlist.');
+		}
 		state.getters.currentQueueSong.play();
 	},
 	togglePlaying: (state) => {

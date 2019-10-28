@@ -35,7 +35,7 @@
                 <v-icon
                   :class="{ 'show-btns': hover }"
                   :color="transparent"
-                  @click="onPlay()"
+                  @click="play(musicInfo)"
                   size="65"
                 >
                   mdi-play
@@ -93,7 +93,7 @@
 </template>
 
 <script>
-  import { mapGetters } from "vuex";
+  import { mapGetters, mapActions } from "vuex";
 export default {
   props: {
     musicInfo: {
@@ -117,6 +117,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'play'
+    ]),
     onAddFavorite() {
       this.starSelected = !this.starSelected;
       if (this.starSelected === true) {
@@ -124,15 +127,6 @@ export default {
       } else {
         console.log("Unfavorited.");
       }
-    },
-    onPlay() {
-      console.log("Played");
-    },
-    onPause(){
-
-    },
-    onAddPlaylist(playlist) {
-      console.log(`Added to playlist ${playlist.title}`);
     }
   },
   data: () => ({

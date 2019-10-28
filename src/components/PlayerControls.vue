@@ -11,16 +11,18 @@
         <v-col />
         <v-col />
         <v-col>
-          <v-icon
-            :class="{ 'show-btns': playButtonHover }"
-            @click="skipQueueBackwards()"
-            size="65"
-          >
-            {{ 'mdi-skip-backward' }}
-          </v-icon>
+          <v-hover v-slot:default="skipBackwardsButtonHover">
+            <v-icon
+              :class="{ 'show-btns': skipBackwardsButtonHover }"
+              @click="skipQueueBackwards()"
+              size="65"
+            >
+              {{ 'mdi-skip-backward' }}
+            </v-icon>
+          </v-hover>
         </v-col>
         <v-col>
-          <v-hover v-slot:default="{ playButtonHover }">
+          <v-hover v-slot:default="playButtonHover">
             <v-icon
               :class="{ 'show-btns': playButtonHover }"
               @click="togglePlaying()"
@@ -31,14 +33,15 @@
           </v-hover>
         </v-col>
         <v-col>
-          <v-icon 
-            :class="{ 'show-btns': playButtonHover }"
-            @click="skipQueueForwards()"
-            size="65"
-          >
-            {{ 'mdi-skip-forward' }}
-          </v-icon>
-          <!-- TODO Place the forward jump button here -->
+          <v-hover v-slot:default="skipFowardsButtonHover">
+            <v-icon 
+              :class="{ 'show-btns': skipFowardsButtonHover }"
+              @click="skipQueueForwards()"
+              size="65"
+            >
+              {{ 'mdi-skip-forward' }}
+            </v-icon>
+          </v-hover>
         </v-col>
         <v-col>
           <v-hover v-slot:default="{ muteButtonHover }">
@@ -52,7 +55,6 @@
           </v-hover>
         </v-col>
         <v-col />
-        <!-- </v-layout> -->
       </v-row>
       <v-row>
         <!-- TODO Reimplement the value to bind the seeking -->
@@ -88,28 +90,4 @@ export default {
 };
 </script>
 <style scoped>
-.player--row {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.song-info--column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-}
-.song-info--column h1,
-h2 {
-  text-align: left;
-}
-.playing-info--column {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-.icons--row {
-  display: flex;
-  justify-content: center;
-}
 </style>
