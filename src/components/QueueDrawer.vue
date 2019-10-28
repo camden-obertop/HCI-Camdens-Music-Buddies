@@ -1,6 +1,6 @@
 <template>
   <!-- TODO Make this top style be bound to the height of navigation bar, or find another way not to overlap -->
-  <v-navigation-drawer v-model="drawerOpen" color="#1E2830" dark style="height:calc(100% - 64px); top: 64px; position: relative; overflow-y: scroll">
+  <v-navigation-drawer v-model="drawerOpen" color="#1E2830" dark style="padding-top: 7px; position: relative; overflow-y: scroll">
     <v-list style="height: 100%">
       <h3 style="text-align: center;"> {{ queue.title }} </h3>
       <v-list-item
