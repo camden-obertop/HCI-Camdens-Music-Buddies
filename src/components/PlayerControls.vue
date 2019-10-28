@@ -27,7 +27,7 @@
           </v-tooltip>
         </v-col>
         <v-col>
-          <v-tooltip top>
+         <v-tooltip top>
             <template v-slot:activator="{ on }">
               <v-hover v-slot:default="skipBackwardsButtonHover">
                 <v-icon
@@ -76,13 +76,15 @@
         <v-col>
           <v-tooltip top>
             <template v-slot:activator="{ on }">
-          <v-hover v-slot:default="{ muteButtonHover }">
-            <v-icon
-              :class="{ 'show-btns': muteButtonHover }"
-              @click="toggleMute()"
-              size="65"
-            >{{ currentQueueSong.isMuted() ? 'mdi-volume-mute': 'mdi-volume-high'}}</v-icon>
-          </v-hover>
+              <v-hover v-slot:default="{ muteButtonHover }">
+                <v-icon
+                  :class="{ 'show-btns': muteButtonHover }"
+                  @click="toggleMute()"
+                  size="65"
+                >
+                  {{ currentQueueSong.isMuted() ? 'mdi-volume-mute': 'mdi-volume-high'}}
+                </v-icon>
+            </v-hover>
             </template>
             <span>{{currentQueueSong.isMuted() ? 'Unmute': 'Mute'}}</span>
           </v-tooltip>
@@ -99,7 +101,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+  import { mapGetters, mapActions } from 'vuex';
 export default {
   name: "playerControls",
   props: {
@@ -108,7 +110,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["currentQueueSong"])
+    ...mapGetters([
+      'currentQueueSong'
+    ])
   },
   methods: {
     ...mapActions([
