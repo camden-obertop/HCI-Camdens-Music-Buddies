@@ -19,7 +19,7 @@
   }
   .gridContent {
     grid-area: content;
-    max-height: 78vh;
+    max-height: 80vh;
     overflow-y: scroll;
     overflow-x: hidden;
   }

@@ -1,6 +1,6 @@
 <template>
   <!-- TODO Change play button for playing song to playing song from clicking on row -->
-  <v-data-table :headers="headers" :items="playlist(this.$route.params.playlistID).songs">
+  <v-data-table dark style="background-color: transparent;" :headers="headers" :items="playlist(this.$route.params.playlistID).songs">
     <template v-slot:body="{ items }">
       <tbody>
         <tr @click="play(item)" v-for="(item, index) in items" :key="'playlist' + index">

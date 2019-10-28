@@ -9,6 +9,7 @@ Vue.use(Vuex);
 
 const state = {
 	searchResults: new Array(NUMBER15, NUMBER15_YOUTUBE, HARD_IN_THE_PAINT, SWAP_MEET, FRIDAY_NIGHT, SIDELINED, NUMBER15_LYRICS, DREAMLAND),
+	drawer: true,
 	songs: SONGS,
 	favoriteSongs: new Array(DREAMLAND, NUMBER15_YOUTUBE),
 	albums: ALBUMS,
@@ -46,6 +47,9 @@ const mutations = {
 	},
 	setQueueIndex: (state, queueIndex) => {
 		state.queueIndex = queueIndex;
+	},
+	toggleDrawer: (state) => {
+		state.drawer = !state.drawer;
 	},
 	addToFavoriteSongs: (state, song) => {
 		state.favoriteSongs.push(song);

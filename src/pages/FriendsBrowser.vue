@@ -27,20 +27,17 @@ img {
   border-radius: 50%;
   max-height: 7vh;
 }
-td {
-  text-align: center;
-}
 th {
   width: 25%;
-}
-tbody tr:nth-child(odd) {
-  background-color: lightgray;
 }
 table {
   border-collapse: collapse;
 }
 thead {
   border-bottom: gray 1px solid;
+}
+tbody tr:hover {
+  background-color: #D50059 !important;
 }
 </style>
 <script>
