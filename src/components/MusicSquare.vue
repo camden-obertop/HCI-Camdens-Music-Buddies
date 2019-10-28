@@ -66,9 +66,14 @@
                 </template>
                 <v-list>
                   <v-list-item
+                    @click="addToQueue(musicInfo)"
+                  >
+                    Add to Queue
+                  </v-list-item>
+                  <v-list-item
                     v-for="(item, index) in playlists"
                     :key="index"
-                    @click="onAddPlaylist(item)"
+                    @click="toggleInPlaylist({playlist: item, addableItem: musicInfo})"
                   >
                     <v-list-item-title>{{ item.title }}</v-list-item-title>
                   </v-list-item>
@@ -113,7 +118,7 @@
 <style scoped src="./music-square.css"/>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 export default {
   props: {
     musicInfo: {
@@ -141,19 +146,13 @@ export default {
   methods: {
     ...mapActions([
       "play",
+      "toggleInPlaylist",
       "toggleFavorite"
     ]),
-    onAddFavorite() {
-      this.starSelected = !this.starSelected;
-      if (this.starSelected === true) {
-        console.log("Favorited!");
-      } else {
-        console.log("Unfavorited.");
-      }
-    },
+    ...mapMutations([
+      'addToQueue'
+    ]),
     navigateToPage() {
-      console.log("Navigating music");
-      console.log(this.musicInfo.ID);
       this.$router.push({
         name: "Playlist",
         params: { playlistID: this.musicInfo.ID }
@@ -161,8 +160,6 @@ export default {
     }
   },
   data: () => ({
-    // TODO Auto detect this from looking at the favorite songs vuex
-    starSelected: false,
     transparent: "rgba(255, 255, 255, 0)"
   })
 };
