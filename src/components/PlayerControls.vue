@@ -9,7 +9,23 @@
     <v-col>
       <v-row>
         <v-col />
-        <v-col />
+        <v-col>
+          <v-tooltip top>
+            <template v-slot:activator="{ on }">
+              <v-hover v-slot:default="restartButtonHover">
+                <v-icon
+                  :class="{ 'show-btns': restartButtonHover }"
+                  @click="restartQueueSong()"
+                  size="65"
+                  v-on="on"
+                >
+                  {{ 'mdi-restart' }}
+                </v-icon>
+              </v-hover>
+            </template>
+            <span> Restart </span>
+          </v-tooltip>
+        </v-col>
         <v-col>
          <v-tooltip top>
             <template v-slot:activator="{ on }">
@@ -19,7 +35,9 @@
                   @click="skipQueueBackwards()"
                   size="65"
                   v-on="on"
-                >{{ 'mdi-skip-backward' }}</v-icon>
+                >
+                  {{ 'mdi-skip-backward' }}
+                </v-icon>
               </v-hover>
             </template>
             <span>Skip Backwards</span>
@@ -56,18 +74,18 @@
           </v-tooltip>
         </v-col>
         <v-col>
-                    <v-tooltip top>
+          <v-tooltip top>
             <template v-slot:activator="{ on }">
-          <v-hover v-slot:default="{ muteButtonHover }">
-            <v-icon
-              :class="{ 'show-btns': muteButtonHover }"
-              @click="toggleMute()"
-              size="65"
-            >
-              {{ currentQueueSong.isMuted() ? 'mdi-volume-mute': 'mdi-volume-high'}}
-            </v-icon>
-          </v-hover>
-                      </template>
+              <v-hover v-slot:default="{ muteButtonHover }">
+                <v-icon
+                  :class="{ 'show-btns': muteButtonHover }"
+                  @click="toggleMute()"
+                  size="65"
+                >
+                  {{ currentQueueSong.isMuted() ? 'mdi-volume-mute': 'mdi-volume-high'}}
+                </v-icon>
+            </v-hover>
+            </template>
             <span>{{currentQueueSong.isMuted() ? 'Unmute': 'Mute'}}</span>
           </v-tooltip>
         </v-col>
@@ -98,11 +116,12 @@ export default {
   },
   methods: {
     ...mapActions([
-      'togglePlaying',
-      'toggleMute',
-      'skipQueueBackwards',
-      'skipQueueForwards'
-    ]),
+      "togglePlaying",
+      "toggleMute",
+      "skipQueueBackwards",
+      "skipQueueForwards",
+      "restartQueueSong"
+    ])
   }
 };
 </script>

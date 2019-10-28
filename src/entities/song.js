@@ -1,5 +1,5 @@
 export default class Song {
-	constructor(title, artist, platform, artURL, albumTitle, audioURL) {
+	constructor(title, artist, platform, artURL, albumTitle, audioURL='./assets/music/audio_not_found.mp3') {
 		this.title = title;
 		this.artist = artist;
 		this.platform = platform;
@@ -14,8 +14,11 @@ export default class Song {
 		return this.audio.duration;
 	}
 
-	set duration(time) {
-		this.audio.fastSeek(time);
+	get currentTime() {
+		return this.audio.currentTime;
+	}
+	set currentTime(newTime) {
+		this.audio.currentTime = newTime;
 	}
 
 	play() {
@@ -44,6 +47,10 @@ export default class Song {
 
 	isMuted() {
 		return this.audio.muted;
+	}
+
+	restart() {
+		this.currentTime = 0;
 	}
 	
 	toString() {

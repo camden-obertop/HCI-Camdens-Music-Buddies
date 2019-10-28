@@ -1,5 +1,5 @@
 <template>
-  <slotted-table :maxRows="maxRows" :columns="columns" :items="songs">
+  <slotted-table :maxRows="maxRows" :columns="columns" :items="favoriteSongs">
     <template #cell="data">
       <music-square
         :isPlaylist="false"
@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'songs'
+      'favoriteSongs'
     ])
   },
   data: () => ({

@@ -1,6 +1,6 @@
 <template>
 	<v-app-bar color="#11171C" dark app>
-    <v-app-bar-nav-icon />
+    <v-app-bar-nav-icon @click="toggleDrawer()" />
     <v-tabs :value="activeTab" dark slider-color="#D50059" background-color="transparent">
       <v-tab
         v-for="header in headers" 
@@ -11,7 +11,8 @@
       </v-tab>
     </v-tabs>
     <!-- TODO Make this look nicer and to be properly lined up -->
-    <v-autocomplete label="Search:" items="Number 15" id="searchBar" class="pt-4" @click="navigateToPage('Search')"/>
+    <!-- TODO Make the results use dark mode -->
+    <v-autocomplete label="Search:" :items="['Number 15']" id="searchBar" class="pt-4" @click="navigateToPage('Search')" dark />
     <v-btn @click="navigateToPage('Settings')" icon>
       <v-icon x-large color=#D50059>mdi-settings</v-icon>
     </v-btn>
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+import {mapActions } from 'vuex';
 export default {
   name: "navigationBar",
   data: function() {
@@ -27,8 +29,11 @@ export default {
     };
   },
   methods: {
-    navigateToPage(pageName) {
-      this.$store.dispatch("navigateToPage", pageName);
+    ...mapActions([
+      'navigateToPage'
+    ]),
+    toggleDrawer() {
+      this.$store.commit('toggleDrawer');
     }
   },
   computed: {
