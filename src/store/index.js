@@ -1,20 +1,18 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { Song, Album, Playlist } from '../entities';
-import { SONGS, DREAMLAND, RUN } from '../data/song_data';
+import { SONGS, DREAMLAND, RUN, NUMBER15 } from '../data/song_data';
 import ALBUMS from '../data/album_data';
 import router from "../router";
 
 Vue.use(Vuex);
-
-console.log(SONGS);
 
 const state = {
 	songs: SONGS,
 	albums: ALBUMS,
 	playlists: [
 		new Playlist('Cool Songs', [DREAMLAND, RUN], './assets/foot-lettuce.png', 1),
-		new Playlist('Cool Songs', [DREAMLAND, RUN], './assets/foot-lettuce.png', 2),
+		new Playlist('Camden SONGSS', [DREAMLAND, NUMBER15], './assets/foot-lettuce.png', 2),
 	],
 	queue: {
 		title: 'Queue',
@@ -34,6 +32,9 @@ const mutations = {
 	},
 	addSongToQueue: (state, song) => {
 		state.queue.songs.push(song);
+	},
+	addSongsToQueue: (state, songs) => {
+		state.queue.songs.push(...songs);
 	},
 	removeSongFromQueue: (state, song) => {
 		state.queue.songs = state.queue.songs.filter(s => s != song);
@@ -68,13 +69,10 @@ const actions = {
 			state.commit('addSongToQueue', playableItem);
 		} else if (playableItem instanceof Playlist) {
 			// TODO Maybe implement a bulk add mutation
-			for (const song of playableItem.songs) {
-				state.commit('addSongToQueue', song);
-			}
+			state.commit('addSongsToQueue', playableItem.songs);
 			state.commit('setQueueTitle', playableItem.title);
 		} else if (playableItem instanceof Album) {
-			// TODO When we add the album's songs to the object, implement
-			// functionality to commit all of their songs to the queue
+			state.commit('addSongsToQueue', playableItem.songs);
 			state.commit('setQueueTitle', playableItem.title);
 		} else {
 			console.error('Unable to figure out how to handle adding the object to the playlist.');
