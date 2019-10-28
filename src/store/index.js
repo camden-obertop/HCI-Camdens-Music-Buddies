@@ -12,16 +12,15 @@ const state = {
 	searchResults: new Array(NUMBER15, NUMBER15_YOUTUBE, HARD_IN_THE_PAINT, SWAP_MEET, FRIDAY_NIGHT, SIDELINED, NUMBER15_LYRICS, DREAMLAND),
 	drawer: true,
 	songs: SONGS,
-	favoriteSongs: new Array(DREAMLAND, NUMBER15_YOUTUBE),
+	favoriteSongs: new Array(REDEYES, NUMBER15_YOUTUBE),
 	albums: ALBUMS,
 	favoriteAlbums: new Array(ODDMENTS_ALBUM, NONAGON_INFINITY),
 	playlists: [
-		new Playlist('Cool Songs', [DREAMLAND, RUN, REDEYES], './assets/foot-lettuce.png', 1),
-		new Playlist('Camden SONGSS', [DREAMLAND, NUMBER15], './assets/foot-lettuce.png', 2),
+		new Playlist('Cool Songs', [RUN], './assets/foot-lettuce.png', 1),
 	],
 	queue: {
 		title: 'Queue',
-		songs: [DREAMLAND, RUN]
+		songs: [RUN]
 	},
 	// This refers to the index of the current song in the queue that
 	// is being played.
