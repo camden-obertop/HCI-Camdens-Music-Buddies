@@ -22,3 +22,12 @@ body, div { color: #FFFFFF; font: 18px "Poetsen One", normal !important; font-we
         /* bottom, gradient */
         linear-gradient(#D50059, #A0008A);
 }
+.gridContent{
+  top: 64px;
+  height: calc(100% - 64px);
+  max-height: 80vh;
+  overflow-y: scroll;
+  padding-top: 0 !important;
+  margin-top: 64px;
+  overflow-x: hidden;
+}

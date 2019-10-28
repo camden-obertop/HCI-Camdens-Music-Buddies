@@ -19,6 +19,13 @@
   }
   .gridContent {
     grid-area: content;
+    top: 64px;
+    height: calc(100% - 64px);
+    max-height: 80vh;
+    overflow-y: scroll;
+    padding-top: 0 !important;
+    margin-top: 64px;
+    overflow-x: hidden;
   }
   .gridPlayer {
     grid-area: player
