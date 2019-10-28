@@ -22,3 +22,13 @@ body, div { color: #FFFFFF; font: 18px "Poetsen One", normal !important; font-we
         /* bottom, gradient */
         linear-gradient(#D50059, #A0008A);
 }
+
+.v-list-item{
+  background-color: #D50059;
+}
+.v-sheet{
+  padding: 0!important;
+} 
+.gridPlayer .v-icon{
+  color:#D50059 !important;
+}
