@@ -3,10 +3,10 @@
     <table>
       <thead>
         <tr>
-          <th colspan="1"></th>
-          <th colspan="1">Name</th>
-          <th colspan="1">Last listend to</th>
-          <th colspan="1">Last active</th>
+          <th align="left" colspan="1"></th>
+          <th align="left" colspan="1">Name</th>
+          <th align="left" colspan="1">Last listened to</th>
+          <th align="left" colspan="1">Last active</th>
         </tr>
       </thead>
       <tbody>
@@ -28,7 +28,7 @@ img {
   max-height: 7vh;
 }
 th {
-  width: 25%;
+  width: 30%;
 }
 table {
   border-collapse: collapse;
@@ -49,19 +49,19 @@ export default {
         {
           url: "https://picsum.photos/200",
           name: "Friend One",
-          songAndArtist: "Jesus is king - Kanye West",
+          songAndArtist: "Jesus is King",
           timeString: "Now"
         },
         {
           url: "https://picsum.photos/200",
           name: "Friend twooo",
-          songAndArtist: "Jesus is king - Kanye West",
+          songAndArtist: "Jesus is King",
           timeString: "18 Hours Ago"
         },
         {
           url: "https://picsum.photos/200",
           name: "Friend tres",
-          songAndArtist: "Jesus is king - Kanye West",
+          songAndArtist: "Jesus is King",
           timeString: "18 Hours Ago"
         }
       ]
