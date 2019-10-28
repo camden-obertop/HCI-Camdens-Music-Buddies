@@ -43,7 +43,7 @@
                     >mdi-play</v-icon>
                   </v-btn>
                 </template>
-                <span>Play/Pause</span>
+                <span>Play</span>
               </v-tooltip>
             </v-col>
             <v-col>
@@ -86,12 +86,17 @@
         class="ma-0 pa-0 text-center"
       >
         <div v-if="!isPlaylist">{{ musicInfo.title }}</div>
-        <v-btn v-else-if="isPlaylist" text @click="navigateToPage()">{{ musicInfo.title }}</v-btn>
+        <v-btn 
+          v-else-if="isPlaylist" 
+          text 
+          style="color: #FFFFFF; font: 18px 'Poetsen One', normal !important;"
+          @click="navigateToPage()">{{ musicInfo.title }} 
+        </v-btn>
       </v-card-text>
       <v-card-text
         v-if="!isPlaylist"
-        class="ml-5 pa-0 text-center subtitle-2"
         style="color: #D3D3D3; font:18px 'Poetsen One', normal !important;"
+        class="ml-5 pa-0 text-center subtitle-2"
       >
         {{ musicInfo.artist }}
         <v-img
