@@ -1,7 +1,8 @@
-import Vue from "vue"; import Vuex from "vuex"; import { Song, Album, Playlist
-} from '../entities'; import { SONGS, DREAMLAND, RUN } from
-'../data/song_data'; import { NUMBER15, NUMBER15_YOUTUBE, HARD_IN_THE_PAINT,
-SWAP_MEET, FRIDAY_NIGHT, SIDELINED, NUMBER15_LYRICS} from '../data/song_data';
+import Vue from "vue"; 
+import Vuex from "vuex"; 
+import { Song, Album, Playlist } from '../entities'; 
+import { SONGS, DREAMLAND, RUN, REDEYES } from '../data/song_data'; 
+import { NUMBER15, NUMBER15_YOUTUBE, HARD_IN_THE_PAINT, SWAP_MEET, FRIDAY_NIGHT, SIDELINED, NUMBER15_LYRICS} from '../data/song_data';
 import { ALBUMS, ODDMENTS_ALBUM, NONAGON_INFINITY } from '../data/album_data';
 import router from "../router";
 
@@ -15,7 +16,7 @@ const state = {
 	albums: ALBUMS,
 	favoriteAlbums: new Array(ODDMENTS_ALBUM, NONAGON_INFINITY),
 	playlists: [
-		new Playlist('Cool Songs', [DREAMLAND, RUN], './assets/foot-lettuce.png', 1),
+		new Playlist('Cool Songs', [DREAMLAND, RUN, REDEYES], './assets/foot-lettuce.png', 1),
 		new Playlist('Camden SONGSS', [DREAMLAND, NUMBER15], './assets/foot-lettuce.png', 2),
 	],
 	queue: {
@@ -28,15 +29,13 @@ const state = {
 };
 
 const mutations = {
-	addSongToQueue: (state, song) => {
-		state.queue.songs.push(song);
+	addToQueue: (state, playableItem) => {
+		if (playableItem instanceof Song) {
+			state.queue.songs.push(playableItem);
+		} else if(playableItem instanceof Album) {
+			state.queue.songs.push(...playableItem.songs);
+		}
 	},
-	addSongsToQueue: (state, songs) => {
-		state.queue.songs.push(...songs);
-	},
-	// removeSongFromQueue: (state, song) => {
-	// 	state.queue.songs = state.queue.songs.filter(s => s != song);
-	// },
 	clearQueue: (state) => {
 		state.queue.songs = [];
 		state.queue.title = 'Queue';
@@ -92,12 +91,12 @@ const actions = {
 		// clear the queue and add this song to the queue
 		state.commit('clearQueue');
 		if (playableItem instanceof Song) {
-			state.commit('addSongToQueue', playableItem);
+			state.commit('addToQueue', playableItem);
 		} else if (playableItem instanceof Playlist) {
-			state.commit('addSongsToQueue', playableItem.songs);
+			state.commit('addToQueue', playableItem);
 			state.commit('setQueueTitle', playableItem.title);
 		} else if (playableItem instanceof Album) {
-			state.commit('addSongsToQueue', playableItem.songs);
+			state.commit('addToQueue', playableItem);
 			state.commit('setQueueTitle', playableItem.title);
 		} else {
 			// console.error('Unable to figure out how to handle adding the object to the playlist.');
@@ -114,7 +113,8 @@ const actions = {
 	toggleMute: (state) => {
 		if (state.getters.currentQueueSong.isMuted()) {
 			state.dispatch('unmuteCurrentSong');
-		} else {
+		} else {+
+
 			state.dispatch('muteCurrentSong');
 		}
 	},
