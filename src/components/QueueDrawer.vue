@@ -1,6 +1,6 @@
 <template>
   <!-- TODO Make this top style be bound to the height of navigation bar, or find another way not to overlap -->
-  <v-navigation-drawer permanent style="top: 64px; position: relative; overflow-y: scroll">
+  <v-navigation-drawer permanent style="top: 64px; position: relative; overflow-y: scroll; height: calc(100% - 64px)">
     <v-list style="background-color: #A4A4A4; height: 100%">
       <h3 style="text-align: center;"> {{ queue.title }} </h3>
       <v-list-item 
