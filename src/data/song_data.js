@@ -1,8 +1,8 @@
 import { Song } from '../entities';
 /* Singles */
-export const DREAMLAND = new Song('Dreamland', 'Chills', 'Spotify', './assets/dreamland.jpg', '', './assets/music/Dreamland.mp3');
-export const NUMBER15 = new Song('Number 15', 'Chills', 'Spotify', './assets/chills-album-cover.jpeg', '', './assets/music/Number 15.mp3');
-export const REDEYES = new Song('Red Eyes', 'Chills', 'Spotify', './assets/sidelined.jpg', '', './assets/music/Red Eyes.mp3');
+export const DREAMLAND = new Song('Dreamland', 'Chills', 'Spotify', './assets/dreamland.jpg', '', './assets/Music/Dreamland.mp3');
+export const NUMBER15 = new Song('Number 15', 'Chills', 'Spotify', './assets/chills-album-cover.jpeg', '', './assets/Music/Number 15.mp3');
+export const REDEYES = new Song('Red Eyes', 'Chills', 'Spotify', './assets/sidelined.jpg', '', './assets/Music/Red Eyes.mp3');
 export const RUN = new Song('Run', 'Awolnation', 'Youtube', './assets/awolnation.jpg', '');
 
 /* In Rainbows */

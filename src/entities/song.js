@@ -1,5 +1,5 @@
 export default class Song {
-	constructor(title, artist, platform, artURL, albumTitle, audioURL='./assets/music/audio_not_found.mp3') {
+	constructor(title, artist, platform, artURL, albumTitle, audioURL='./assets/Music/audio_not_found.mp3') {
 		this.title = title;
 		this.artist = artist;
 		this.platform = platform;
